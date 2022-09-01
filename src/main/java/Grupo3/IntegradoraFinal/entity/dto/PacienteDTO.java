@@ -1,6 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.Paciente;
+import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +15,7 @@ public class PacienteDTO {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public PacienteDTO(Paciente paciente) {
+    public PacienteDTO(PacienteEntity paciente) {
         this.nome = paciente.getNome();
         this.sobrenome = paciente.getSobrenome();
         this.endereco = paciente.getEndereco();

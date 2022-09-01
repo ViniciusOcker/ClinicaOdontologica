@@ -1,10 +1,11 @@
 package Grupo3.IntegradoraFinal.entity;
 
-public class Funcionario {
+import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 
+public class FuncionarioEntity {
+    private Integer id;
     private String nome;
     private String sobrenome;
-    private Integer id;
     private Integer cro;
 
     public Integer getCro() {
@@ -33,5 +34,14 @@ public class Funcionario {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public FuncionarioEntity() {
+    }
+
+    public FuncionarioEntity(FuncionarioDTO funcionarioDTO) {
+        this.nome = funcionarioDTO.getNome();
+        this.sobrenome = funcionarioDTO.getSobrenome();
+        this.cro = funcionarioDTO.getCro();
     }
 }

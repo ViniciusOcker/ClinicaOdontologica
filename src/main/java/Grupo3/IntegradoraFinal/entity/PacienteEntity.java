@@ -1,8 +1,10 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+
 import java.time.LocalDate;
 
-public class Paciente {
+public class PacienteEntity {
 
     private Integer id;
     private String nome;
@@ -11,12 +13,20 @@ public class Paciente {
     private String rg;
     private LocalDate data_de_alta;
 
-    public Paciente(String nome, String sobrenome, String endereco, String rg, LocalDate data_de_alta) {
+    public PacienteEntity(String nome, String sobrenome, String endereco, String rg, LocalDate data_de_alta) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
         this.data_de_alta = data_de_alta;
+    }
+
+    public PacienteEntity(PacienteDTO pacienteDTO) {
+        this.nome = pacienteDTO.getNome();
+        this.sobrenome = pacienteDTO.getSobrenome();
+        this.endereco = pacienteDTO.getEndereco();
+        this.rg = pacienteDTO.getRg();
+        this.data_de_alta = pacienteDTO.getData_de_alta();
     }
 
     public Integer getId() {

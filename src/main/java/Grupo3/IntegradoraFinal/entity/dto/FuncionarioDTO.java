@@ -1,6 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.Funcionario;
+import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 
 public class FuncionarioDTO {
 
@@ -8,7 +8,7 @@ public class FuncionarioDTO {
     private String sobrenome;
     private Integer cro;
 
-    public FuncionarioDTO(Funcionario funcionario) {
+    public FuncionarioDTO(FuncionarioEntity funcionario) {
         this.nome = funcionario.getNome();
         this.sobrenome = funcionario.getSobrenome();
         this.cro = funcionario.getCro();
