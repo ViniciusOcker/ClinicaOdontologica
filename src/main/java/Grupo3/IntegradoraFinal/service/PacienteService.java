@@ -43,7 +43,7 @@ public class PacienteService {
 
     public String delete(int id){
         pacienteRepository.delete(id);
-        return "O Funcionario " + id + " foi deletado com sucesso!";
+        return "O Paciente " + id + " foi deletado com sucesso!";
     }
 
     public PacienteDTO update(int id, PacienteDTO pacienteDTO){
