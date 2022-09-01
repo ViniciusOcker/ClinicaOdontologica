@@ -27,6 +27,7 @@ public class FuncionarioRepository {
     }
 
     public List<FuncionarioEntity> getByAll(){
+
         return new ArrayList<FuncionarioEntity>(funcionarios.values());
     }
 
