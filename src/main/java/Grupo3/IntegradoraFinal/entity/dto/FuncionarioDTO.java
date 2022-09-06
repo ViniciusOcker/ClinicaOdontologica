@@ -4,28 +4,21 @@ import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 
 public class FuncionarioDTO {
 
-    private String nome;
-    private String sobrenome;
+
+    private String nomeCompleto;
     private Integer cro;
 
     public FuncionarioDTO(FuncionarioEntity funcionario) {
-        this.nome = funcionario.getNome();
-        this.sobrenome = funcionario.getSobrenome();
+        this.nomeCompleto = funcionario.getNome() + " " + funcionario.getSobrenome();
         this.cro = funcionario.getCro();
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
     public Integer getCro() {

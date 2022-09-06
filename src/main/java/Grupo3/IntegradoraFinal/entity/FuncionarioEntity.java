@@ -2,10 +2,19 @@ package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "funcionario")
 public class FuncionarioEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true, nullable = false)
     private String nome;
+    @Column(unique = true, nullable = false)
     private String sobrenome;
+    @Column(unique = true, nullable = false)
     private Integer cro;
 
     public Integer getCro() {
@@ -40,8 +49,7 @@ public class FuncionarioEntity {
     }
 
     public FuncionarioEntity(FuncionarioDTO funcionarioDTO) {
-        this.nome = funcionarioDTO.getNome();
-        this.sobrenome = funcionarioDTO.getSobrenome();
+        this.nome = funcionarioDTO.getNomeCompleto();
         this.cro = funcionarioDTO.getCro();
     }
 }

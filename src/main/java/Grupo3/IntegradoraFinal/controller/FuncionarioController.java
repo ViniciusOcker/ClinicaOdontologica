@@ -1,7 +1,7 @@
 package Grupo3.IntegradoraFinal.controller;
 
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
-import Grupo3.IntegradoraFinal.service.FuncionarioService;
+import Grupo3.IntegradoraFinal.service.impl.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
