@@ -1,32 +1,37 @@
 package Grupo3.IntegradoraFinal.entity;
 
-import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "Paciente")
 public class PacienteEntity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPaciente")
     private Integer id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String sobrenome;
-    private String endereco;
+    @Column(nullable = false)
+    private EnderecoEntity endereco;
+    @Column(nullable = false)
     private String rg;
     private LocalDate data_de_alta;
+    private UsuarioEntity usuario;
 
-    public PacienteEntity(String nome, String sobrenome, String endereco, String rg, LocalDate data_de_alta) {
+    PacienteEntity(String nome, String sobrenome, EnderecoEntity endereco,UsuarioEntity usuario, String rg, LocalDate data_de_alta) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
+        this.usuario = usuario;
         this.rg = rg;
         this.data_de_alta = data_de_alta;
     }
 
-    public PacienteEntity(PacienteDTO pacienteDTO) {
-        this.nome = pacienteDTO.getNome();
-        this.sobrenome = pacienteDTO.getSobrenome();
-        this.endereco = pacienteDTO.getEndereco();
-        this.rg = pacienteDTO.getRg();
-        this.data_de_alta = pacienteDTO.getData_de_alta();
+    public PacienteEntity() {
     }
 
     public Integer getId() {
@@ -50,10 +55,10 @@ public class PacienteEntity {
         this.sobrenome = sobrenome;
     }
 
-    public String getEndereco() {
+    public EnderecoEntity getEndereco() {
         return endereco;
     }
-    public void setEndereco(String endereco) {
+    public void setEndereco(EnderecoEntity endereco) {
         this.endereco = endereco;
     }
 
@@ -73,13 +78,14 @@ public class PacienteEntity {
 
     @Override
     public String toString() {
-        return "Paciente{" +
+        return "PacienteEntity{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
-                ", endereco='" + endereco + '\'' +
+                ", endereco=" + endereco +
                 ", rg='" + rg + '\'' +
                 ", data_de_alta=" + data_de_alta +
+                ", usuario=" + usuario +
                 '}';
     }
 }
