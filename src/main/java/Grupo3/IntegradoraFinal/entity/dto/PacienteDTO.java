@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
 
 public class PacienteDTO {
 
-    private String nome;
-    private String sobrenome;
+    private String nomeCompleto;
+
     private String endereco;
     private String rg;
     private LocalDate data_de_alta;
@@ -16,27 +16,18 @@ public class PacienteDTO {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public PacienteDTO(PacienteEntity paciente) {
-        this.nome = paciente.getNome();
-        this.sobrenome = paciente.getSobrenome();
+        this.nomeCompleto = paciente.getNome() + " " + paciente.getSobrenome();
         this.endereco = paciente.getEndereco();
         this.rg = paciente.getRg();
         this.data_de_alta = paciente.getData_de_alta();
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
     public String getEndereco() {

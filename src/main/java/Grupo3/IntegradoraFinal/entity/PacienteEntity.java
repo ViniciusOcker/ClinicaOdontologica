@@ -2,15 +2,25 @@ package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "pacientes")
 public class PacienteEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true, nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String sobrenome;
+    @Column(nullable = false)
     private String endereco;
+    @Column(nullable = false)
     private String rg;
+    @Column
     private LocalDate data_de_alta;
 
     public PacienteEntity(String nome, String sobrenome, String endereco, String rg, LocalDate data_de_alta) {
@@ -22,8 +32,7 @@ public class PacienteEntity {
     }
 
     public PacienteEntity(PacienteDTO pacienteDTO) {
-        this.nome = pacienteDTO.getNome();
-        this.sobrenome = pacienteDTO.getSobrenome();
+        this.nome = pacienteDTO.getNomeCompleto();
         this.endereco = pacienteDTO.getEndereco();
         this.rg = pacienteDTO.getRg();
         this.data_de_alta = pacienteDTO.getData_de_alta();

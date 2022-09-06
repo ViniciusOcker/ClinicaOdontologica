@@ -1,11 +1,10 @@
-package Grupo3.IntegradoraFinal.service;
+package Grupo3.IntegradoraFinal.service.impl;
 
-import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
+
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
-import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
-import Grupo3.IntegradoraFinal.repository.FuncionarioRepository;
-import Grupo3.IntegradoraFinal.repository.PacienteRepository;
+import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
+import Grupo3.IntegradoraFinal.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,27 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PacienteService {
+public class PacienteService implements IService<PacienteDTO> {
     @Autowired
-    PacienteRepository pacienteRepository;
+    private IPacienteRepository pacienteRepository;
 
     public PacienteDTO create(PacienteDTO pacienteDTO){
         PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
-        PacienteEntity pacienteEntity1 = pacienteRepository.create(pacienteEntity);
-        PacienteDTO pacienteDTO1 = new PacienteDTO(pacienteEntity1);
+        pacienteEntity = pacienteRepository.save(pacienteEntity);
+        pacienteDTO = new PacienteDTO(pacienteEntity);
 
-        return pacienteDTO1;
+        return pacienteDTO;
     }
 
     public PacienteDTO getById(int id){
-        PacienteEntity pacienteEntity = pacienteRepository.getById(id);
+        PacienteEntity pacienteEntity = pacienteRepository.findById(id).get();
         PacienteDTO pacienteDTO = new PacienteDTO(pacienteEntity);
         return pacienteDTO;
     }
 
     public List<PacienteDTO> getByAll(){
         List<PacienteDTO> pacienteDTOList = new ArrayList<>();
-        List<PacienteEntity> pacienteEntityList = pacienteRepository.getByAll();
+        List<PacienteEntity> pacienteEntityList = pacienteRepository.findAll();
         for (PacienteEntity pacienteEntity: pacienteEntityList) {
             PacienteDTO pacienteDTO= new PacienteDTO(pacienteEntity);
             pacienteDTOList.add(pacienteDTO);
@@ -42,14 +41,14 @@ public class PacienteService {
     }
 
     public String delete(int id){
-        pacienteRepository.delete(id);
+        pacienteRepository.deleteById(id);
         return "O Paciente " + id + " foi deletado com sucesso!";
     }
 
     public PacienteDTO update(int id, PacienteDTO pacienteDTO){
         PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
         pacienteEntity.setId(id);
-        pacienteRepository.update(pacienteEntity);
+        pacienteRepository.saveAndFlush(pacienteEntity);
         PacienteDTO pacienteDTO1 = new PacienteDTO(pacienteEntity);
         return pacienteDTO1;
     }

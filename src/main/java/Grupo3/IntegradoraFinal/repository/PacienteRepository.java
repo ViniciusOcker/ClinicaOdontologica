@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+/*@Repository
 public class PacienteRepository {
     private Map<Integer, PacienteEntity> pacientes = new HashMap<>();
     int id = 1;
@@ -34,3 +34,4 @@ public class PacienteRepository {
         return pacientes.put(pacienteEntity.getId(),pacienteEntity);
     }
 }
+*/
