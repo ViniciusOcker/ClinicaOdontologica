@@ -1,8 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
-import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,22 +11,21 @@ public class FuncionarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idFuncionario")
-    private Integer id;
+    private Long idFuncionario;
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     private String sobrenome;
     @Column(unique = true, nullable = false)
-    private Integer cro;
+    private String cro;
     private boolean admin;
     @JoinColumn(name= "idUsuario", referencedColumnName = "idUsuario")
     private UsuarioEntity usuario;
-
     @OneToMany(mappedBy="id")
     private Set<ConsultaEntity> consultas;
 
-    public FuncionarioEntity(Integer id, String nome, String sobrenome, Integer cro, boolean admin, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
-        this.id = id;
+    public FuncionarioEntity(Long idFuncionario, String nome, String sobrenome, String cro, boolean admin, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
+        this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cro = cro;
@@ -40,12 +37,12 @@ public class FuncionarioEntity {
     public FuncionarioEntity() {
     }
 
-    public Integer getId() {
-        return id;
+    public Long getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdFuncionario(Long idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public String getNome() {
@@ -64,11 +61,11 @@ public class FuncionarioEntity {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getCro() {
+    public String getCro() {
         return cro;
     }
 
-    public void setCro(Integer cro) {
+    public void setCro(String cro) {
         this.cro = cro;
     }
 
@@ -95,13 +92,14 @@ public class FuncionarioEntity {
     public void setConsultas(Set<ConsultaEntity> consultas) {
         this.consultas = consultas;
     }
+
     @Override
     public String toString() {
         return "FuncionarioEntity{" +
-                "id=" + id +
+                "id=" + idFuncionario +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
-                ", cro=" + cro +
+                ", cro='" + cro + '\'' +
                 ", admin=" + admin +
                 ", usuario=" + usuario +
                 ", consultas=" + consultas +

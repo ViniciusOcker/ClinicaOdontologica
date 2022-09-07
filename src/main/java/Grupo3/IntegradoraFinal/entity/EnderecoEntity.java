@@ -1,8 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
-import Grupo3.IntegradoraFinal.entity.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +10,7 @@ public class EnderecoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEndereco")
-    private Integer id;
+    private Long id;
     private String complemento;
     @Column(nullable = false)
     private String rua;
@@ -25,7 +23,7 @@ public class EnderecoEntity {
     private String estado;
     private String pontoDeReferencia;
 
-    public EnderecoEntity(Integer id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
+    public EnderecoEntity(Long id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
         this.id = id;
         this.complemento = complemento;
         this.rua = rua;
@@ -39,11 +37,11 @@ public class EnderecoEntity {
     public EnderecoEntity() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

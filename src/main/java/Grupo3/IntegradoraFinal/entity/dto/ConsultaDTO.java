@@ -2,9 +2,11 @@ package Grupo3.IntegradoraFinal.entity.dto;
 
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ConsultaDTO {
+public class ConsultaDTO implements Serializable {
     private Long id;
     private PacienteEntity paciente;
     private FuncionarioEntity funcionario;

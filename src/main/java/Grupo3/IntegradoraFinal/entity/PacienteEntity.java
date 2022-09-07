@@ -1,13 +1,19 @@
 package Grupo3.IntegradoraFinal.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Table(name = "Paciente")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "idPaciente")
+    private Long idPaciente;
+    private String nome;
+    private String sobrenome;
     @Column(unique = true, nullable = false)
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoEntity endereco;
@@ -16,12 +22,11 @@ public class PacienteEntity {
     private LocalDate dataDeAlta;
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     private UsuarioEntity usuario;
-
     @OneToMany(mappedBy = "id")
     private Set<ConsultaEntity> consultas;
 
-    public PacienteEntity(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
-        this.id = id;
+    public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
+        this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
@@ -34,12 +39,12 @@ public class PacienteEntity {
     public PacienteEntity() {
     }
 
-    public Integer getId() {
-        return id;
+    public Long getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNome() {
@@ -101,7 +106,7 @@ public class PacienteEntity {
     @Override
     public String toString() {
         return "PacienteEntity{" +
-                "id=" + id +
+                "id=" + idPaciente +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
                 ", endereco=" + endereco +

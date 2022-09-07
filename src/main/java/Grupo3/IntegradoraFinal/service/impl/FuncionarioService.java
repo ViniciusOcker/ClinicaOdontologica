@@ -1,9 +1,13 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
 
+import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
+import Grupo3.IntegradoraFinal.entity.dto.EnderecoDTO;
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
-import Grupo3.IntegradoraFinal.repository.FuncionarioRepository;
+import Grupo3.IntegradoraFinal.repository.IFuncionarioRepository;
+import Grupo3.IntegradoraFinal.service.IService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,44 +15,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FuncionarioService {
+public class FuncionarioService implements IService<FuncionarioDTO> {
     @Autowired
-    FuncionarioRepository funcionarioRepository;
+    IFuncionarioRepository funcionarioRepository;
 
-    public FuncionarioDTO create(FuncionarioDTO funcionarioDTO){
-        FuncionarioEntity funcionarioEntity = new FuncionarioEntity(funcionarioDTO);
-        FuncionarioEntity funcionarioEntity1 = funcionarioRepository.create(funcionarioEntity);
-        FuncionarioDTO funcionarioDTO1 = new FuncionarioDTO(funcionarioEntity1);
-
-        return funcionarioDTO1;
+    private FuncionarioEntity mapperDTOToEntity(FuncionarioDTO funcionarioDTO) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FuncionarioEntity funcionario = objectMapper.convertValue(funcionarioDTO, FuncionarioEntity.class);
+        return funcionario;
     }
 
-    public FuncionarioDTO getById(int id){
-        FuncionarioEntity funcionarioEntity = funcionarioRepository.getById(id);
-        FuncionarioDTO funcionarioDTO1 = new FuncionarioDTO(funcionarioEntity);
-        return funcionarioDTO1;
+    private FuncionarioDTO mapperEntityToDTO(FuncionarioEntity funcionarioEntity) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FuncionarioDTO funcionario = objectMapper.convertValue(funcionarioEntity, FuncionarioDTO.class);
+        return funcionario;
     }
 
-    public List<FuncionarioDTO> getByAll(){
-        List<FuncionarioDTO> funcionarioDTOList = new ArrayList<>();
-        List<FuncionarioEntity> funcionarioEntityList = funcionarioRepository.getByAll();
-        for (FuncionarioEntity funcionarioEntity: funcionarioEntityList) {
-            FuncionarioDTO funcionarioDTO = new FuncionarioDTO(funcionarioEntity);
-            funcionarioDTOList.add(funcionarioDTO);
-        }
-        return funcionarioDTOList;
+    @Override
+    public FuncionarioDTO create(FuncionarioDTO funcionarioDTO) {
+        return null;
     }
 
-    public String delete(int id){
-        funcionarioRepository.delete(id);
-        return "O Funcionario " + id + " foi deletado com sucesso!";
+    @Override
+    public FuncionarioDTO getById(int id) {
+        return null;
     }
 
-    public FuncionarioDTO update(int id, FuncionarioDTO funcionarioDTO){
-        FuncionarioEntity funcionarioEntity = new FuncionarioEntity(funcionarioDTO);
-        funcionarioEntity.setId(id);
-        funcionarioRepository.update(funcionarioEntity);
-        FuncionarioDTO funcionarioDTO1 = new FuncionarioDTO(funcionarioEntity);
-        return funcionarioDTO1;
+    @Override
+    public List<FuncionarioDTO> getByAll() {
+        return null;
+    }
+
+    @Override
+    public String delete(int id) {
+        return null;
+    }
+
+    @Override
+    public FuncionarioDTO update(int id, FuncionarioDTO funcionarioDTO) {
+        return null;
     }
 }

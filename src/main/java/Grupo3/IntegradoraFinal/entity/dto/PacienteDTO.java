@@ -6,11 +6,12 @@ import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class PacienteDTO {
-    private Integer id;
+public class PacienteDTO implements Serializable {
+    private Long id;
     private String nome;
     private String sobrenome;
     private EnderecoDTO endereco;
@@ -19,7 +20,7 @@ public class PacienteDTO {
     private UsuarioDTO usuario;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public PacienteDTO(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioDTO usuario) {
+    public PacienteDTO(Long id, String nome, String sobrenome, EnderecoDTO endereco, String rg, LocalDate dataDeAlta, Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO usuario) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -32,23 +33,35 @@ public class PacienteDTO {
     public PacienteDTO() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public String getNome() {
+        return nome;
     }
 
-    public EnderecoEntity getEndereco() {
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public EnderecoDTO getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(EnderecoEntity endereco) {
+    public void setEndereco(EnderecoDTO endereco) {
         this.endereco = endereco;
     }
 
@@ -68,11 +81,11 @@ public class PacienteDTO {
         this.dataDeAlta = dataDeAlta;
     }
 
-    public UsuarioDTO getUsuario() {
+    public Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO usuario) {
         this.usuario = usuario;
     }
 
@@ -83,6 +96,7 @@ public class PacienteDTO {
     public void setFormatter(DateTimeFormatter formatter) {
         this.formatter = formatter;
     }
+
     @Override
     public String toString() {
         return "PacienteDTO{" +

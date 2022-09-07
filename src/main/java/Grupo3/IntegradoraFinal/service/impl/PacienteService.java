@@ -1,10 +1,13 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
 
+import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
+import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
 import Grupo3.IntegradoraFinal.service.IService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,40 +19,40 @@ public class PacienteService implements IService<PacienteDTO> {
     @Autowired
     private IPacienteRepository pacienteRepository;
 
-    public PacienteDTO create(PacienteDTO pacienteDTO){
-        PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
-        pacienteEntity = pacienteRepository.save(pacienteEntity);
-        pacienteDTO = new PacienteDTO(pacienteEntity);
-
-        return pacienteDTO;
+    private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        PacienteEntity paciente = objectMapper.convertValue(pacienteDTO, PacienteEntity.class);
+        return paciente;
     }
 
-    public PacienteDTO getById(int id){
-        PacienteEntity pacienteEntity = pacienteRepository.findById(id).get();
-        PacienteDTO pacienteDTO = new PacienteDTO(pacienteEntity);
-        return pacienteDTO;
+    private PacienteDTO mapperEntityToDTO(PacienteEntity pacienteEntity) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        PacienteDTO paciente = objectMapper.convertValue(pacienteEntity, PacienteDTO.class);
+        return paciente;
     }
 
-    public List<PacienteDTO> getByAll(){
-        List<PacienteDTO> pacienteDTOList = new ArrayList<>();
-        List<PacienteEntity> pacienteEntityList = pacienteRepository.findAll();
-        for (PacienteEntity pacienteEntity: pacienteEntityList) {
-            PacienteDTO pacienteDTO= new PacienteDTO(pacienteEntity);
-            pacienteDTOList.add(pacienteDTO);
-        }
-        return pacienteDTOList;
+    @Override
+    public PacienteDTO create(PacienteDTO pacienteDTO) {
+        return null;
     }
 
-    public String delete(int id){
-        pacienteRepository.deleteById(id);
-        return "O Paciente " + id + " foi deletado com sucesso!";
+    @Override
+    public PacienteDTO getById(int id) {
+        return null;
     }
 
-    public PacienteDTO update(int id, PacienteDTO pacienteDTO){
-        PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
-        pacienteEntity.setId(id);
-        pacienteRepository.saveAndFlush(pacienteEntity);
-        PacienteDTO pacienteDTO1 = new PacienteDTO(pacienteEntity);
-        return pacienteDTO1;
+    @Override
+    public List<PacienteDTO> getByAll() {
+        return null;
+    }
+
+    @Override
+    public String delete(int id) {
+        return null;
+    }
+
+    @Override
+    public PacienteDTO update(int id, PacienteDTO pacienteDTO) {
+        return null;
     }
 }
