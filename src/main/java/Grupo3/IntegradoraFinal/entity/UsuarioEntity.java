@@ -1,22 +1,35 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name ="Usuario")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUsuario")
     private Long id;
     @Column(unique = true, nullable = false)
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
 
-    public UsuarioEntity(Long id, String nomeDeUsuario, String senha) {
+    @OneToOne(mappedBy = "id")
+    private Set<PacienteEntity> pacientes;
+
+    @OneToOne(mappedBy = "id")
+    private Set<FuncionarioEntity> funcionarios;
+
+    public UsuarioEntity(Long id, String nomeDeUsuario, String senha, Set<PacienteEntity> pacientes, Set<FuncionarioEntity> funcionarios) {
         this.id = id;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
+        this.pacientes = pacientes;
+        this.funcionarios = funcionarios;
     }
 
     public UsuarioEntity() {
@@ -46,12 +59,30 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
+    public Set<PacienteEntity> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(Set<PacienteEntity> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public Set<FuncionarioEntity> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(Set<FuncionarioEntity> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+
     @Override
     public String toString() {
         return "UsuarioEntity{" +
                 "id=" + id +
                 ", nomeDeUsuario='" + nomeDeUsuario + '\'' +
                 ", senha='" + senha + '\'' +
+                ", pacientes=" + pacientes +
+                ", funcionarios=" + funcionarios +
                 '}';
     }
 }

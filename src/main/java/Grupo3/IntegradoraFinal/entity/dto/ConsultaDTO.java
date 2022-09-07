@@ -1,32 +1,17 @@
-package Grupo3.IntegradoraFinal.entity;
+package Grupo3.IntegradoraFinal.entity.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
+import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
+import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "consulta")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ConsultaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idConsulta")
+public class ConsultaDTO {
     private Long id;
-    @ManyToOne
-    @JoinColumn(name="idPaciente", nullable=false)
-    @Column(nullable = false)
     private PacienteEntity paciente;
-    @ManyToOne
-    @JoinColumn(name="idFuncionario", nullable=false)
-    @Column(nullable = false)
     private FuncionarioEntity funcionario;
-    @Column(unique = true, nullable = false)
     private LocalDateTime inicioConsulta;
-    @Column(unique = true, nullable = false)
     private LocalDateTime fimConsulta;
 
-    public ConsultaEntity(Long id, PacienteEntity paciente, FuncionarioEntity funcionario, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public ConsultaDTO(Long id, PacienteEntity paciente, FuncionarioEntity funcionario, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
         this.id = id;
         this.paciente = paciente;
         this.funcionario = funcionario;
@@ -34,7 +19,7 @@ public class ConsultaEntity {
         this.fimConsulta = fimConsulta;
     }
 
-    public ConsultaEntity() {
+    public ConsultaDTO() {
     }
 
     public Long getId() {
@@ -79,7 +64,7 @@ public class ConsultaEntity {
 
     @Override
     public String toString() {
-        return "ConsultaEntity{" +
+        return "ConsultaDTO{" +
                 "id=" + id +
                 ", paciente=" + paciente +
                 ", funcionario=" + funcionario +

@@ -1,11 +1,14 @@
 package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Funcionario")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class FuncionarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +20,20 @@ public class FuncionarioEntity {
     private String sobrenome;
     private Integer cro;
     private boolean admin;
-
+    @JoinColumn(name= "idUsuario", referencedColumnName = "idUsuario")
     private UsuarioEntity usuario;
 
-    public FuncionarioEntity(Integer id, String nome, String sobrenome, Integer cro, boolean admin, UsuarioEntity usuario) {
+    @OneToMany(mappedBy="id")
+    private Set<ConsultaEntity> consultas;
+
+    public FuncionarioEntity(Integer id, String nome, String sobrenome, Integer cro, boolean admin, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cro = cro;
         this.admin = admin;
         this.usuario = usuario;
+        this.consultas = consultas;
     }
 
     public FuncionarioEntity() {
@@ -80,6 +87,14 @@ public class FuncionarioEntity {
         this.usuario = usuario;
     }
 
+    public Set<ConsultaEntity> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<ConsultaEntity> consultas) {
+        this.consultas = consultas;
+    }
+
     @Override
     public String toString() {
         return "FuncionarioEntity{" +
@@ -88,6 +103,8 @@ public class FuncionarioEntity {
                 ", sobrenome='" + sobrenome + '\'' +
                 ", cro=" + cro +
                 ", admin=" + admin +
+                ", usuario=" + usuario +
+                ", consultas=" + consultas +
                 '}';
     }
 }

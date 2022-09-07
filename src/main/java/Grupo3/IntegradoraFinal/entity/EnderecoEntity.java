@@ -1,11 +1,13 @@
 package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.EnderecoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Endereco")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EnderecoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

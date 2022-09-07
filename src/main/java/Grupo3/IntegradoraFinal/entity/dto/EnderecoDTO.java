@@ -2,20 +2,46 @@ package Grupo3.IntegradoraFinal.entity.dto;
 
 import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
 
-public class EnderecoDTO {
+import javax.persistence.Column;
 
+public class EnderecoDTO {
+    private Integer id;
+    private String complemento;
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
+    private String pontoDeReferencia;
 
-    public EnderecoDTO(EnderecoEntity enderecoEntity) {
-        this.rua = enderecoEntity.getRua();
-        this.numero = enderecoEntity.getNumero();
-        this.bairro = enderecoEntity.getBairro();
-        this.cidade = enderecoEntity.getCidade();
-        this.estado = enderecoEntity.getEstado();
+    public EnderecoDTO(Integer id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
+        this.id = id;
+        this.complemento = complemento;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pontoDeReferencia = pontoDeReferencia;
+    }
+
+    public EnderecoDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getRua() {
@@ -56,5 +82,27 @@ public class EnderecoDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getPontoDeReferencia() {
+        return pontoDeReferencia;
+    }
+
+    public void setPontoDeReferencia(String pontoDeReferencia) {
+        this.pontoDeReferencia = pontoDeReferencia;
+    }
+
+    @Override
+    public String toString() {
+        return "EnderecoDTO{" +
+                "id=" + id +
+                ", complemento='" + complemento + '\'' +
+                ", rua='" + rua + '\'' +
+                ", numero='" + numero + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
+                ", pontoDeReferencia='" + pontoDeReferencia + '\'' +
+                '}';
     }
 }

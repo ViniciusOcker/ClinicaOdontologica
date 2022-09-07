@@ -1,11 +1,15 @@
 package Grupo3.IntegradoraFinal.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "Paciente")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,19 +20,26 @@ public class PacienteEntity {
     @Column(nullable = false)
     private String sobrenome;
     @Column(nullable = false)
+    @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoEntity endereco;
     @Column(nullable = false)
     private String rg;
-    private LocalDate data_de_alta;
+    private LocalDate dataDeAlta;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     private UsuarioEntity usuario;
 
-    PacienteEntity(String nome, String sobrenome, EnderecoEntity endereco,UsuarioEntity usuario, String rg, LocalDate data_de_alta) {
+    @OneToMany(mappedBy = "id")
+    private Set<ConsultaEntity> consultas;
+
+    public PacienteEntity(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
-        this.usuario = usuario;
         this.rg = rg;
-        this.data_de_alta = data_de_alta;
+        this.dataDeAlta = dataDeAlta;
+        this.usuario = usuario;
+        this.consultas = consultas;
     }
 
     public PacienteEntity() {
@@ -37,6 +48,7 @@ public class PacienteEntity {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -44,6 +56,7 @@ public class PacienteEntity {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -51,6 +64,7 @@ public class PacienteEntity {
     public String getSobrenome() {
         return sobrenome;
     }
+
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
@@ -58,6 +72,7 @@ public class PacienteEntity {
     public EnderecoEntity getEndereco() {
         return endereco;
     }
+
     public void setEndereco(EnderecoEntity endereco) {
         this.endereco = endereco;
     }
@@ -65,15 +80,33 @@ public class PacienteEntity {
     public String getRg() {
         return rg;
     }
+
     public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public LocalDate getData_de_alta() {
-        return data_de_alta;
+    public LocalDate getDataDeAlta() {
+        return dataDeAlta;
     }
-    public void setData_de_alta(LocalDate data_de_alta) {
-        this.data_de_alta = data_de_alta;
+
+    public void setDataDeAlta(LocalDate dataDeAlta) {
+        this.dataDeAlta = dataDeAlta;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public Set<ConsultaEntity> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<ConsultaEntity> consultas) {
+        this.consultas = consultas;
     }
 
     @Override
@@ -84,8 +117,9 @@ public class PacienteEntity {
                 ", sobrenome='" + sobrenome + '\'' +
                 ", endereco=" + endereco +
                 ", rg='" + rg + '\'' +
-                ", data_de_alta=" + data_de_alta +
+                ", dataDeAlta=" + dataDeAlta +
                 ", usuario=" + usuario +
+                ", consultas=" + consultas +
                 '}';
     }
 }

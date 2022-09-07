@@ -1,26 +1,43 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
+import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
+import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PacienteDTO {
-
+    private Integer id;
     private String nome;
     private String sobrenome;
-    private String endereco;
+    private EnderecoDTO endereco;
     private String rg;
-    private LocalDate data_de_alta;
-
+    private LocalDate dataDeAlta;
+    private UsuarioDTO usuario;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public PacienteDTO(PacienteEntity paciente) {
-        this.nome = paciente.getNome();
-        this.sobrenome = paciente.getSobrenome();
-        this.endereco = paciente.getEndereco();
-        this.rg = paciente.getRg();
-        this.data_de_alta = paciente.getData_de_alta();
+    public PacienteDTO(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioDTO usuario) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.endereco = endereco;
+        this.rg = rg;
+        this.dataDeAlta = dataDeAlta;
+        this.usuario = usuario;
+    }
+
+    public PacienteDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -39,11 +56,11 @@ public class PacienteDTO {
         this.sobrenome = sobrenome;
     }
 
-    public String getEndereco() {
+    public EnderecoEntity getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(EnderecoEntity endereco) {
         this.endereco = endereco;
     }
 
@@ -55,12 +72,20 @@ public class PacienteDTO {
         this.rg = rg;
     }
 
-    public LocalDate getData_de_alta() {
-        return data_de_alta;
+    public LocalDate getDataDeAlta() {
+        return dataDeAlta;
     }
 
-    public void setData_de_alta(LocalDate data_de_alta) {
-        this.data_de_alta = data_de_alta;
+    public void setDataDeAlta(LocalDate dataDeAlta) {
+        this.dataDeAlta = dataDeAlta;
+    }
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 
     public DateTimeFormatter getFormatter() {
@@ -69,5 +94,19 @@ public class PacienteDTO {
 
     public void setFormatter(DateTimeFormatter formatter) {
         this.formatter = formatter;
+    }
+
+    @Override
+    public String toString() {
+        return "PacienteDTO{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", endereco=" + endereco +
+                ", rg='" + rg + '\'' +
+                ", dataDeAlta=" + dataDeAlta +
+                ", usuario=" + usuario +
+                ", formatter=" + formatter +
+                '}';
     }
 }
