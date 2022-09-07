@@ -1,46 +1,43 @@
 package Grupo3.IntegradoraFinal.entity;
 
-import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-
-@Entity
-@Table(name = "pacientes")
+@Table(name = "Paciente")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true, nullable = false)
-    private String nome;
-    @Column(nullable = false)
-    private String sobrenome;
-    @Column(nullable = false)
-    private String endereco;
+    @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
+    private EnderecoEntity endereco;
     @Column(nullable = false)
     private String rg;
-    @Column
-    private LocalDate data_de_alta;
+    private LocalDate dataDeAlta;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
+    private UsuarioEntity usuario;
 
-    public PacienteEntity(String nome, String sobrenome, String endereco, String rg, LocalDate data_de_alta) {
+    @OneToMany(mappedBy = "id")
+    private Set<ConsultaEntity> consultas;
+
+    public PacienteEntity(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
-        this.data_de_alta = data_de_alta;
+        this.dataDeAlta = dataDeAlta;
+        this.usuario = usuario;
+        this.consultas = consultas;
     }
 
-    public PacienteEntity(PacienteDTO pacienteDTO) {
-        this.nome = pacienteDTO.getNomeCompleto();
-        this.endereco = pacienteDTO.getEndereco();
-        this.rg = pacienteDTO.getRg();
-        this.data_de_alta = pacienteDTO.getData_de_alta();
+    public PacienteEntity() {
     }
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -48,6 +45,7 @@ public class PacienteEntity {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -55,40 +53,62 @@ public class PacienteEntity {
     public String getSobrenome() {
         return sobrenome;
     }
+
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
 
-    public String getEndereco() {
+    public EnderecoEntity getEndereco() {
         return endereco;
     }
-    public void setEndereco(String endereco) {
+
+    public void setEndereco(EnderecoEntity endereco) {
         this.endereco = endereco;
     }
 
     public String getRg() {
         return rg;
     }
+
     public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public LocalDate getData_de_alta() {
-        return data_de_alta;
+    public LocalDate getDataDeAlta() {
+        return dataDeAlta;
     }
-    public void setData_de_alta(LocalDate data_de_alta) {
-        this.data_de_alta = data_de_alta;
+
+    public void setDataDeAlta(LocalDate dataDeAlta) {
+        this.dataDeAlta = dataDeAlta;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public Set<ConsultaEntity> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<ConsultaEntity> consultas) {
+        this.consultas = consultas;
     }
 
     @Override
     public String toString() {
-        return "Paciente{" +
+        return "PacienteEntity{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
-                ", endereco='" + endereco + '\'' +
+                ", endereco=" + endereco +
                 ", rg='" + rg + '\'' +
-                ", data_de_alta=" + data_de_alta +
+                ", dataDeAlta=" + dataDeAlta +
+                ", usuario=" + usuario +
+                ", consultas=" + consultas +
                 '}';
     }
 }
