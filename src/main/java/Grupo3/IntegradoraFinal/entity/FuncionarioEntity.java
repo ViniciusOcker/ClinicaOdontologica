@@ -18,6 +18,7 @@ public class FuncionarioEntity {
     private String nome;
     @Column(nullable = false)
     private String sobrenome;
+    @Column(unique = true, nullable = false)
     private Integer cro;
     private boolean admin;
     @JoinColumn(name= "idUsuario", referencedColumnName = "idUsuario")
@@ -94,7 +95,6 @@ public class FuncionarioEntity {
     public void setConsultas(Set<ConsultaEntity> consultas) {
         this.consultas = consultas;
     }
-
     @Override
     public String toString() {
         return "FuncionarioEntity{" +

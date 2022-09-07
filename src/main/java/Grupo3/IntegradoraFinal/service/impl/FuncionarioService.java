@@ -1,4 +1,4 @@
-package Grupo3.IntegradoraFinal.service;
+package Grupo3.IntegradoraFinal.service.impl;
 
 
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;

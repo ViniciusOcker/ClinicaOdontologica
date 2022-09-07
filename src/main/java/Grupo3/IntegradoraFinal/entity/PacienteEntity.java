@@ -1,25 +1,14 @@
 package Grupo3.IntegradoraFinal.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Set;
-
-@Entity
 @Table(name = "Paciente")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPaciente")
     private Integer id;
-    @Column(nullable = false)
-    private String nome;
-    @Column(nullable = false)
-    private String sobrenome;
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoEntity endereco;
     @Column(nullable = false)
