@@ -1,7 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,11 +16,10 @@ public class UsuarioEntity {
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
-
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "idPaciente")
     private Set<PacienteEntity> pacientes;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "idFuncionario")
     private Set<FuncionarioEntity> funcionarios;
 
     public UsuarioEntity(Long id, String nomeDeUsuario, String senha, Set<PacienteEntity> pacientes, Set<FuncionarioEntity> funcionarios) {

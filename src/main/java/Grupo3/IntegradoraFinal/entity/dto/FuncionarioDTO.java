@@ -3,15 +3,16 @@ package Grupo3.IntegradoraFinal.entity.dto;
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 
-public class FuncionarioDTO {
-    private Integer id;
+public class FuncionarioDTO implements Serializable {
+    private Long id;
     private String nome;
     private String sobrenome;
     private Integer cro;
     private boolean admin;
 
-    public FuncionarioDTO(Integer id, String nome, String sobrenome, Integer cro, boolean admin) {
+    public FuncionarioDTO(Long id, String nome, String sobrenome, Integer cro, boolean admin) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -22,10 +23,10 @@ public class FuncionarioDTO {
     public FuncionarioDTO() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
