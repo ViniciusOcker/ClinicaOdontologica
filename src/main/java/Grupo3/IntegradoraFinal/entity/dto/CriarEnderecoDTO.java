@@ -1,12 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
-
-import javax.persistence.Column;
-import java.io.Serializable;
-
-public class EnderecoDTO implements Serializable {
-    private Long id;
+public class CriarEnderecoDTO {
     private String complemento;
     private String rua;
     private String numero;
@@ -15,8 +9,8 @@ public class EnderecoDTO implements Serializable {
     private String estado;
     private String pontoDeReferencia;
 
-    public EnderecoDTO(Long id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
-        this.id = id;
+
+    public CriarEnderecoDTO(String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
         this.complemento = complemento;
         this.rua = rua;
         this.numero = numero;
@@ -26,17 +20,7 @@ public class EnderecoDTO implements Serializable {
         this.pontoDeReferencia = pontoDeReferencia;
     }
 
-    public EnderecoDTO() {
-    }
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CriarEnderecoDTO() {
     }
 
     public String getComplemento() {
@@ -93,19 +77,5 @@ public class EnderecoDTO implements Serializable {
 
     public void setPontoDeReferencia(String pontoDeReferencia) {
         this.pontoDeReferencia = pontoDeReferencia;
-    }
-
-    @Override
-    public String toString() {
-        return "EnderecoDTO{" +
-                "id=" + id +
-                ", complemento='" + complemento + '\'' +
-                ", rua='" + rua + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", pontoDeReferencia='" + pontoDeReferencia + '\'' +
-                '}';
     }
 }

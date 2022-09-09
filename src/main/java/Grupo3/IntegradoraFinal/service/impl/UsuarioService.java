@@ -2,6 +2,7 @@ package Grupo3.IntegradoraFinal.service.impl;
 
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
+import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.repository.IUsuarioRepository;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService implements IService<UsuarioDTO> {
+public class UsuarioService {
     @Autowired
     IUsuarioRepository usuarioRepository;
 
@@ -29,27 +30,27 @@ public class UsuarioService implements IService<UsuarioDTO> {
         return usuario;
     }
 
-    @Override
-    public UsuarioDTO create(UsuarioDTO usuarioDTO) {
-        return null;
+
+    public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO) {
+        return mapperEntityToDTO(usuarioRepository.saveAndFlush(new UsuarioEntity(criarUsuarioDTO)));
     }
 
-    @Override
+
     public UsuarioDTO getById(int id) {
         return null;
     }
 
-    @Override
+
     public List<UsuarioDTO> getByAll() {
         return null;
     }
 
-    @Override
+
     public String delete(int id) {
         return null;
     }
 
-    @Override
+
     public UsuarioDTO update(int id, UsuarioDTO usuarioDTO) {
         return null;
     }

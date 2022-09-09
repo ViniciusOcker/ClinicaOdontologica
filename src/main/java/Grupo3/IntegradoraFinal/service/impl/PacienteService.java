@@ -3,8 +3,7 @@ package Grupo3.IntegradoraFinal.service.impl;
 
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
-import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
-import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+import Grupo3.IntegradoraFinal.entity.dto.*;
 import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
 import Grupo3.IntegradoraFinal.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,9 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PacienteService implements IService<PacienteDTO> {
+public class PacienteService {
     @Autowired
     private IPacienteRepository pacienteRepository;
+
+    @Autowired
+    private EnderecoService enderecoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -31,27 +36,29 @@ public class PacienteService implements IService<PacienteDTO> {
         return paciente;
     }
 
-    @Override
-    public PacienteDTO create(PacienteDTO pacienteDTO) {
-        return null;
+
+    public PacienteDTO create(CriarPacienteDTO criarPacienteDTO) {
+        UsuarioDTO usuarioDTO = usuarioService.create(new CriarUsuarioDTO(criarPacienteDTO));
+        EnderecoDTO enderecoDTO = enderecoService.create(criarPacienteDTO.getEndereco());
+        return mapperEntityToDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, usuarioDTO.getId(), enderecoDTO.getId())));
     }
 
-    @Override
+
     public PacienteDTO getById(int id) {
         return null;
     }
 
-    @Override
+
     public List<PacienteDTO> getByAll() {
         return null;
     }
 
-    @Override
+
     public String delete(int id) {
         return null;
     }
 
-    @Override
+
     public PacienteDTO update(int id, PacienteDTO pacienteDTO) {
         return null;
     }

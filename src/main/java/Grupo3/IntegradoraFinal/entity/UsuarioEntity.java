@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.Set;
@@ -31,6 +32,15 @@ public class UsuarioEntity {
     }
 
     public UsuarioEntity() {
+    }
+
+    public UsuarioEntity(CriarUsuarioDTO criarUsuarioDTO) {
+        this.nomeDeUsuario = criarUsuarioDTO.getNomeDeUsuario();
+        this.senha = criarUsuarioDTO.getSenha();
+    }
+
+    public UsuarioEntity(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
