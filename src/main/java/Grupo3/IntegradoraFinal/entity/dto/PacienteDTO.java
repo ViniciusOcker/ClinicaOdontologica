@@ -30,6 +30,7 @@ public class PacienteDTO implements Serializable {
         this.usuario = usuario;
     }
 
+
     public PacienteDTO() {
     }
 

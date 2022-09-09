@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarPacienteDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,6 +38,14 @@ public class PacienteEntity {
     }
 
     public PacienteEntity() {
+    }
+
+    public PacienteEntity(CriarPacienteDTO criarPacienteDTO, Long idUsuario, Long idEndereco) {
+        this.nome = criarPacienteDTO.getNome();
+        this.sobrenome = criarPacienteDTO.getSobrenome();
+        this.endereco = new EnderecoEntity(idEndereco);
+        this.rg = criarPacienteDTO.getRg();
+        this.usuario = new UsuarioEntity(idUsuario);
     }
 
     public Long getIdPaciente() {

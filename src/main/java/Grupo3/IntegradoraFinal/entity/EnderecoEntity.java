@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarEnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
@@ -35,6 +36,20 @@ public class EnderecoEntity {
     }
 
     public EnderecoEntity() {
+    }
+
+    public EnderecoEntity(Long id) {
+        this.id = id;
+    }
+
+    public EnderecoEntity(CriarEnderecoDTO criarEnderecoDTO) {
+        this.complemento = criarEnderecoDTO.getComplemento();
+        this.rua = criarEnderecoDTO.getRua();
+        this.numero = criarEnderecoDTO.getNumero();
+        this.bairro = criarEnderecoDTO.getBairro();
+        this.cidade = criarEnderecoDTO.getCidade();
+        this.estado = criarEnderecoDTO.getEstado();
+        this.pontoDeReferencia = criarEnderecoDTO.getPontoDeReferencia();
     }
 
     public Long getId() {
