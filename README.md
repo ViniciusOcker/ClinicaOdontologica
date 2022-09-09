@@ -2,7 +2,7 @@
 
 Projetinho para disciplina de BackEnd do curso CTD
 
-Grupo do 5°Bismetre:
+Grupo 3 do 5° Bimestre:
 - Vinicius Ocker Fagundes
 - Lasdilau Alexandre
 - Ulace
