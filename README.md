@@ -1,4 +1,4 @@
-# integradoraFinal
+# Sistema de consulta de clínica odontológica
 
 Projetinho para disciplina de BackEnd do curso CTD
 
