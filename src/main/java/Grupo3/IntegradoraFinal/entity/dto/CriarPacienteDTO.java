@@ -9,19 +9,13 @@ public class CriarPacienteDTO {
     private String sobrenome;
     private CriarEnderecoDTO endereco;
     private String rg;
-    private String nomeDeUsuario;
-    private String senha;
 
-    public CriarPacienteDTO(String nome, String sobrenome, CriarEnderecoDTO endereco, String rg, String nomeDeUsuario, String senha) {
+    public CriarPacienteDTO(String nome, String sobrenome, CriarEnderecoDTO endereco, String rg) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
-        this.nomeDeUsuario = nomeDeUsuario;
-        this.senha = senha;
     }
-
-
 
     public String getNome() {
         return nome;
@@ -53,21 +47,5 @@ public class CriarPacienteDTO {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public String getNomeDeUsuario() {
-        return nomeDeUsuario;
-    }
-
-    public void setNomeDeUsuario(String nomeDeUsuario) {
-        this.nomeDeUsuario = nomeDeUsuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

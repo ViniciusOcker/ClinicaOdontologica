@@ -17,18 +17,13 @@ public class UsuarioEntity {
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
-    @OneToOne(mappedBy = "idPaciente")
-    private Set<PacienteEntity> pacientes;
+    private boolean admin;
 
-    @OneToOne(mappedBy = "idFuncionario")
-    private Set<FuncionarioEntity> funcionarios;
-
-    public UsuarioEntity(Long id, String nomeDeUsuario, String senha, Set<PacienteEntity> pacientes, Set<FuncionarioEntity> funcionarios) {
+    public UsuarioEntity(Long id, String nomeDeUsuario, String senha, boolean admin) {
         this.id = id;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
-        this.pacientes = pacientes;
-        this.funcionarios = funcionarios;
+        this.admin = admin;
     }
 
     public UsuarioEntity() {
@@ -37,10 +32,7 @@ public class UsuarioEntity {
     public UsuarioEntity(CriarUsuarioDTO criarUsuarioDTO) {
         this.nomeDeUsuario = criarUsuarioDTO.getNomeDeUsuario();
         this.senha = criarUsuarioDTO.getSenha();
-    }
-
-    public UsuarioEntity(Long id) {
-        this.id = id;
+        this.admin = criarUsuarioDTO.isAdmin();
     }
 
     public Long getId() {
@@ -65,32 +57,5 @@ public class UsuarioEntity {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Set<PacienteEntity> getPacientes() {
-        return pacientes;
-    }
-
-    public void setPacientes(Set<PacienteEntity> pacientes) {
-        this.pacientes = pacientes;
-    }
-
-    public Set<FuncionarioEntity> getFuncionarios() {
-        return funcionarios;
-    }
-
-    public void setFuncionarios(Set<FuncionarioEntity> funcionarios) {
-        this.funcionarios = funcionarios;
-    }
-
-    @Override
-    public String toString() {
-        return "UsuarioEntity{" +
-                "id=" + id +
-                ", nomeDeUsuario='" + nomeDeUsuario + '\'' +
-                ", senha='" + senha + '\'' +
-                ", pacientes=" + pacientes +
-                ", funcionarios=" + funcionarios +
-                '}';
     }
 }

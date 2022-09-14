@@ -21,7 +21,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public PacienteDTO getById(@PathVariable int id){
+    public PacienteDTO getById(@PathVariable Long id){
         return pacienteService.getById(id);
     }
 
@@ -31,12 +31,12 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable Long id){
         return pacienteService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public PacienteDTO update(@PathVariable int id, @RequestBody PacienteDTO pacienteDTO){
+    public PacienteDTO update(@PathVariable Long id, @RequestBody PacienteDTO pacienteDTO){
         return pacienteService.update(id, pacienteDTO);
     }
 }

@@ -3,8 +3,8 @@ package Grupo3.IntegradoraFinal.service;
 import java.util.List;
 
 public interface IService<T>{
-    T getById(int id);
+    T getById(Long id);
     List<T> getByAll();
-    String delete(int id);
-    T update( int id,T t);
+    String delete(Long id);
+    T update(Long id,T t);
 }

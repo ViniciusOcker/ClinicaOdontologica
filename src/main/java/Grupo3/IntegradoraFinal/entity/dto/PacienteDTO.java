@@ -1,11 +1,5 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
-import Grupo3.IntegradoraFinal.entity.PacienteEntity;
-import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,21 +11,23 @@ public class PacienteDTO implements Serializable {
     private EnderecoDTO endereco;
     private String rg;
     private LocalDate dataDeAlta;
-    private UsuarioDTO usuario;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public PacienteDTO(Long id, String nome, String sobrenome, EnderecoDTO endereco, String rg, LocalDate dataDeAlta, Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO usuario) {
+    public PacienteDTO(Long id, String nome, String sobrenome, EnderecoDTO endereco, String rg, LocalDate dataDeAlta, DateTimeFormatter formatter) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
         this.dataDeAlta = dataDeAlta;
-        this.usuario = usuario;
+        this.formatter = formatter;
     }
 
-
     public PacienteDTO() {
+    }
+
+    public PacienteDTO(CriarPacienteDTO criarPacienteDTO) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -82,33 +78,11 @@ public class PacienteDTO implements Serializable {
         this.dataDeAlta = dataDeAlta;
     }
 
-    public Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-
     public DateTimeFormatter getFormatter() {
         return formatter;
     }
 
     public void setFormatter(DateTimeFormatter formatter) {
         this.formatter = formatter;
-    }
-
-    @Override
-    public String toString() {
-        return "PacienteDTO{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", endereco=" + endereco +
-                ", rg='" + rg + '\'' +
-                ", dataDeAlta=" + dataDeAlta +
-                ", usuario=" + usuario +
-                ", formatter=" + formatter +
-                '}';
     }
 }

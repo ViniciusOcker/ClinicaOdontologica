@@ -18,18 +18,18 @@ public class ConsultaEntity {
 
     private PacienteEntity paciente;
     @ManyToOne
-    @JoinColumn(name="idFuncionario", nullable=false)
+    @JoinColumn(name="idDentista", nullable=false)
 
-    private FuncionarioEntity funcionario;
+    private DentistaEntity dentista;
     @Column(unique = true, nullable = false)
     private LocalDateTime inicioConsulta;
     @Column(unique = true, nullable = false)
     private LocalDateTime fimConsulta;
 
-    public ConsultaEntity(Long id, PacienteEntity paciente, FuncionarioEntity funcionario, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public ConsultaEntity(Long id, PacienteEntity paciente, DentistaEntity dentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
         this.id = id;
         this.paciente = paciente;
-        this.funcionario = funcionario;
+        this.dentista = dentista;
         this.inicioConsulta = inicioConsulta;
         this.fimConsulta = fimConsulta;
     }
@@ -45,7 +45,7 @@ public class ConsultaEntity {
         this.id = id;
     }
 
-   public PacienteEntity getPaciente() {
+    public PacienteEntity getPaciente() {
         return paciente;
     }
 
@@ -53,12 +53,12 @@ public class ConsultaEntity {
         this.paciente = paciente;
     }
 
-   public FuncionarioEntity getFuncionario() {
-        return funcionario;
+    public DentistaEntity getDentista() {
+        return dentista;
     }
 
-    public void setFuncionario(FuncionarioEntity funcionario) {
-        this.funcionario = funcionario;
+    public void setDentista(DentistaEntity dentista) {
+        this.dentista = dentista;
     }
 
     public LocalDateTime getInicioConsulta() {
@@ -75,16 +75,5 @@ public class ConsultaEntity {
 
     public void setFimConsulta(LocalDateTime fimConsulta) {
         this.fimConsulta = fimConsulta;
-    }
-
-    @Override
-    public String toString() {
-        return "ConsultaEntity{" +
-                "id=" + id +
-                ", paciente=" + paciente +
-                ", funcionario=" + funcionario +
-                ", inicioConsulta=" + inicioConsulta +
-                ", fimConsulta=" + fimConsulta +
-                '}';
     }
 }

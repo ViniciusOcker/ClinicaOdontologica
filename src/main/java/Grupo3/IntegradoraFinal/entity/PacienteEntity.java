@@ -16,36 +16,34 @@ public class PacienteEntity {
     private String nome;
     private String sobrenome;
 
+    @OneToOne
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoEntity endereco;
     @Column(nullable = false)
     private String rg;
     private LocalDate dataDeAlta;
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
-    private UsuarioEntity usuario;
     @OneToMany(mappedBy = "id")
     private Set<ConsultaEntity> consultas;
 
-    public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, UsuarioEntity usuario, Set<ConsultaEntity> consultas) {
+    public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> consultas) {
         this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
         this.dataDeAlta = dataDeAlta;
-        this.usuario = usuario;
         this.consultas = consultas;
     }
 
     public PacienteEntity() {
     }
 
-    public PacienteEntity(CriarPacienteDTO criarPacienteDTO, Long idUsuario, Long idEndereco) {
+    public PacienteEntity(CriarPacienteDTO criarPacienteDTO, Long id) {
         this.nome = criarPacienteDTO.getNome();
         this.sobrenome = criarPacienteDTO.getSobrenome();
-        this.endereco = new EnderecoEntity(idEndereco);
+        this.endereco = new EnderecoEntity(id);
         this.rg = criarPacienteDTO.getRg();
-        this.usuario = new UsuarioEntity(idUsuario);
+        this.dataDeAlta = null;
     }
 
     public Long getIdPaciente() {
@@ -96,33 +94,11 @@ public class PacienteEntity {
         this.dataDeAlta = dataDeAlta;
     }
 
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
-
-    public Set<ConsultaEntity> getConsultas() {
+    public Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> getConsultas() {
         return consultas;
     }
 
-    public void setConsultas(Set<ConsultaEntity> consultas) {
+    public void setConsultas(Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> consultas) {
         this.consultas = consultas;
-    }
-
-    @Override
-    public String toString() {
-        return "PacienteEntity{" +
-                "id=" + idPaciente +
-                ", nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", endereco=" + endereco +
-                ", rg='" + rg + '\'' +
-                ", dataDeAlta=" + dataDeAlta +
-                ", usuario=" + usuario +
-                ", consultas=" + consultas +
-                '}';
     }
 }

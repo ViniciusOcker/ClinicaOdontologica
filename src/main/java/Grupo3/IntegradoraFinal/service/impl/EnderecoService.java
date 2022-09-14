@@ -1,16 +1,16 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
-import Grupo3.IntegradoraFinal.entity.ConsultaEntity;
 import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
-import Grupo3.IntegradoraFinal.entity.dto.ConsultaDTO;
+import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarEnderecoDTO;
 import Grupo3.IntegradoraFinal.entity.dto.EnderecoDTO;
+import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.repository.IEnderecoRepository;
-import Grupo3.IntegradoraFinal.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,29 +30,27 @@ public class EnderecoService  {
         return endereco;
     }
 
-
-
     public EnderecoDTO create(CriarEnderecoDTO criarEnderecoDTO) {
         return mapperEntityToDTO(enderecoRepository.saveAndFlush(new EnderecoEntity(criarEnderecoDTO)));
     }
 
-
-    public EnderecoDTO getById(int id) {
-        return null;
+    public EnderecoDTO getById(Long id) {
+        return mapperEntityToDTO(enderecoRepository.findById(id).get());
     }
-
 
     public List<EnderecoDTO> getByAll() {
+        List<EnderecoDTO> enderecoList = new ArrayList<>();
+        for (EnderecoEntity endereco : enderecoRepository.findAll()) {
+            enderecoList.add(mapperEntityToDTO(endereco));
+        }
+        return enderecoList;
+    }
+
+    public String delete(Long id) {
         return null;
     }
 
-
-    public String delete(int id) {
-        return null;
-    }
-
-
-    public EnderecoDTO update(int id, EnderecoDTO enderecoDTO) {
+    public EnderecoDTO update(Long id, EnderecoDTO enderecoDTO) {
         return null;
     }
 }

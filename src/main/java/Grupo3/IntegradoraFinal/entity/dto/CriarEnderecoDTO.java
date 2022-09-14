@@ -9,7 +9,6 @@ public class CriarEnderecoDTO {
     private String estado;
     private String pontoDeReferencia;
 
-
     public CriarEnderecoDTO(String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
         this.complemento = complemento;
         this.rua = rua;

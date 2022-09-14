@@ -1,8 +1,7 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
-
-import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
+import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.*;
 import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
 import Grupo3.IntegradoraFinal.service.IService;
@@ -14,15 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PacienteService {
+public class PacienteService implements IService<PacienteDTO> {
     @Autowired
     private IPacienteRepository pacienteRepository;
 
     @Autowired
     private EnderecoService enderecoService;
-
-    @Autowired
-    private UsuarioService usuarioService;
 
     private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -36,30 +32,32 @@ public class PacienteService {
         return paciente;
     }
 
-
     public PacienteDTO create(CriarPacienteDTO criarPacienteDTO) {
-        UsuarioDTO usuarioDTO = usuarioService.create(new CriarUsuarioDTO(criarPacienteDTO));
         EnderecoDTO enderecoDTO = enderecoService.create(criarPacienteDTO.getEndereco());
-        return mapperEntityToDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, usuarioDTO.getId(), enderecoDTO.getId())));
+        return mapperEntityToDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, enderecoDTO.getId())));
     }
 
-
-    public PacienteDTO getById(int id) {
-        return null;
+    @Override
+    public PacienteDTO getById(Long id) {
+        return mapperEntityToDTO(pacienteRepository.findById(id).get());
     }
 
-
+    @Override
     public List<PacienteDTO> getByAll() {
+        List<PacienteDTO> pacienteList = new ArrayList<>();
+        for (PacienteEntity paciente: pacienteRepository.findAll()) {
+            pacienteList.add(mapperEntityToDTO(paciente));
+        }
+        return pacienteList;
+    }
+
+    @Override
+    public String delete(Long id) {
         return null;
     }
 
-
-    public String delete(int id) {
-        return null;
-    }
-
-
-    public PacienteDTO update(int id, PacienteDTO pacienteDTO) {
+    @Override
+    public PacienteDTO update(Long id, PacienteDTO pacienteDTO) {
         return null;
     }
 }

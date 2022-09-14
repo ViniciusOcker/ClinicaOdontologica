@@ -11,7 +11,7 @@ public class EnderecoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEndereco")
-    private Long id;
+    private Long idEndereco;
     private String complemento;
     @Column(nullable = false)
     private String rua;
@@ -24,8 +24,8 @@ public class EnderecoEntity {
     private String estado;
     private String pontoDeReferencia;
 
-    public EnderecoEntity(Long id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
-        this.id = id;
+    public EnderecoEntity(Long idEndereco, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
+        this.idEndereco = idEndereco;
         this.complemento = complemento;
         this.rua = rua;
         this.numero = numero;
@@ -38,8 +38,8 @@ public class EnderecoEntity {
     public EnderecoEntity() {
     }
 
-    public EnderecoEntity(Long id) {
-        this.id = id;
+    public EnderecoEntity(Long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public EnderecoEntity(CriarEnderecoDTO criarEnderecoDTO) {
@@ -52,12 +52,12 @@ public class EnderecoEntity {
         this.pontoDeReferencia = criarEnderecoDTO.getPontoDeReferencia();
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEndereco(Long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getComplemento() {
@@ -114,19 +114,5 @@ public class EnderecoEntity {
 
     public void setPontoDeReferencia(String pontoDeReferencia) {
         this.pontoDeReferencia = pontoDeReferencia;
-    }
-
-    @Override
-    public String toString() {
-        return "EnderecoEntity{" +
-                "id=" + id +
-                ", complemento='" + complemento + '\'' +
-                ", rua='" + rua + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", pontoDeReferencia='" + pontoDeReferencia + '\'' +
-                '}';
     }
 }

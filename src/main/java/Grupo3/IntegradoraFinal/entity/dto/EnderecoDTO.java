@@ -29,8 +29,6 @@ public class EnderecoDTO implements Serializable {
     public EnderecoDTO() {
     }
 
-
-
     public Long getId() {
         return id;
     }
@@ -93,19 +91,5 @@ public class EnderecoDTO implements Serializable {
 
     public void setPontoDeReferencia(String pontoDeReferencia) {
         this.pontoDeReferencia = pontoDeReferencia;
-    }
-
-    @Override
-    public String toString() {
-        return "EnderecoDTO{" +
-                "id=" + id +
-                ", complemento='" + complemento + '\'' +
-                ", rua='" + rua + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", pontoDeReferencia='" + pontoDeReferencia + '\'' +
-                '}';
     }
 }
