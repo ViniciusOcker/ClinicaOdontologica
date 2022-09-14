@@ -1,10 +1,50 @@
-# Sistema de consulta de clínica odontológica
 
-Projetinho para disciplina de BackEnd do curso CTD
+<h1 align= "center"> Integradora Final </h1>
 
-Grupo 3 do 5° Bimestre:
-- Vinicius Ocker Fagundes
-- Ladislau Alexandre
-- Ualace Santos
-- Roberto Castro
-- Matheus Ferraioli
+[![skills](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot/)
+[![skills](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://docs.oracle.com/en/java/)
+
+
+![Forks](https://img.shields.io/github/forks/ViniciusOcker/IntegradoraFinal)
+![Stars](	https://img.shields.io/github/stars/ViniciusOcker/IntegradoraFinal)
+![license](https://img.shields.io/github/license/ViniciusOcker/IntegradoraFinal)
+
+
+
+# 📁 Project Objective :star:
+
+Para Prática, Aplicação e Avaliação dos conhecimentos em BACK-END-CTD em Java.
+
+Criação de um Sistema que permita administrar a reservar e marcação de consultas para uma ou qualquer Instituição Odonlogica.
+Esse Sistema será criado com o uso de Java, SpringBoot e com Banco de Dados.
+
+
+:construction: Projeto em construção :construction:
+
+## ✔️ Requirements: 
+
+- `Administração de dados Odontológicos`
+- `Administração de Pacientes`
+- `Login`
+- `Registrar consulta`
+
+## ✔️ Tasks:
+
+- `Criação de Testes Unitários`
+- `Integração com APIs`
+
+## 🛠️ Techniques and Technologies 
+
+- ``Java 8``
+- ``InteliJ IDEA``
+- ``Paradigma de orientação a objetos``
+
+## 👨‍🎓 Authors | 3° Group
+
+| [<img src="https://avatars.githubusercontent.com/u/60163731?v=4" width=115><br><sub>Vinicius Ocker Fagundes</sub>](https://github.com/ViniciusOcker) |  [<img src="https://avatars.githubusercontent.com/u/86082822?s=96&v=4" width=115><br><sub>Ladislau Alexandre</sub>](https://github.com/LAYASUARES) |  [<img src="https://avatars.githubusercontent.com/u/37387009?v=4" width=115><br><sub>Roberto Castro</sub>](https://github.com/betokast) | [<img src="https://avatars.githubusercontent.com/u/69219182?v=4" width=115><br><sub>Matheus Ferraioli</sub>](https://github.com/ferraioli) | [<img src="https://avatars.githubusercontent.com/u/89046095?v=4" width=115><br><sub>Ualace Santos</sub>](https://github.com/Ualace36)
+| :---: | :---: | :---: | :---: | :---: | 
+
+
+
+
+
