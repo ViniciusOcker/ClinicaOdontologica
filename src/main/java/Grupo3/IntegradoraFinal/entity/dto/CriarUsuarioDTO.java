@@ -17,6 +17,11 @@ public class CriarUsuarioDTO {
         this.senha = criarPacienteDTO.getSenha();
     }
 
+    public CriarUsuarioDTO(CriarFuncionarioDTO criarFuncionarioDTO) {
+        this.nomeDeUsuario = criarFuncionarioDTO.getNomeDeUsuario();
+        this.senha = criarFuncionarioDTO.getSenha();
+    }
+
     public String getNomeDeUsuario() {
         return nomeDeUsuario;
     }

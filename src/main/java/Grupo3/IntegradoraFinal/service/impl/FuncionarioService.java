@@ -1,23 +1,25 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
 
-import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
 import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
-import Grupo3.IntegradoraFinal.entity.dto.EnderecoDTO;
+import Grupo3.IntegradoraFinal.entity.dto.CriarFuncionarioDTO;
+import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
+import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.repository.IFuncionarioRepository;
 import Grupo3.IntegradoraFinal.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FuncionarioService implements IService<FuncionarioDTO> {
     @Autowired
     IFuncionarioRepository funcionarioRepository;
+   @Autowired
+    UsuarioService usuarioService;
 
     private FuncionarioEntity mapperDTOToEntity(FuncionarioDTO funcionarioDTO) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -31,9 +33,10 @@ public class FuncionarioService implements IService<FuncionarioDTO> {
         return funcionario;
     }
 
-    @Override
-    public FuncionarioDTO create(FuncionarioDTO funcionarioDTO) {
-        return null;
+
+    public FuncionarioDTO create (CriarFuncionarioDTO criarFuncionarioDTO) {
+        UsuarioDTO usuarioDTO = usuarioService.create(new CriarUsuarioDTO(criarFuncionarioDTO));
+        return mapperEntityToDTO(funcionarioRepository.saveAndFlush(new FuncionarioEntity(criarFuncionarioDTO, usuarioDTO.getId())));
     }
 
     @Override

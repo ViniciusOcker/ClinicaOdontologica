@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.controller;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarFuncionarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 import Grupo3.IntegradoraFinal.service.impl.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class FuncionarioController {
     FuncionarioService funcionarioService;
 
     @PostMapping("/create")
-    public FuncionarioDTO create(@RequestBody FuncionarioDTO funcionarioDTO){
-        return funcionarioService.create(funcionarioDTO);
+    public FuncionarioDTO create(@RequestBody CriarFuncionarioDTO criarFuncionarioDTO){
+        return funcionarioService.create(criarFuncionarioDTO );
     }
 
     @GetMapping("/{id}")
