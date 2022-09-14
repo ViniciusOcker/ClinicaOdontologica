@@ -1,30 +1,37 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import java.io.Serializable;
+public class CriarFuncionarioDTO {
 
-public class FuncionarioDTO implements Serializable {
-    private Long id;
+    private String nomeDeUsuario;
+    private String senha;
     private String nome;
     private String sobrenome;
     private String cro;
     private boolean admin;
 
-    public FuncionarioDTO(Long id, String nome, String sobrenome, String cro, boolean admin) {
-        this.id = id;
+    public CriarFuncionarioDTO(String nomeDeUsuario, String senha, String nome, String sobrenome, String cro, boolean admin) {
+        this.nomeDeUsuario = nomeDeUsuario;
+        this.senha = senha;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cro = cro;
         this.admin = admin;
     }
 
-    public FuncionarioDTO() {
+    public String getNomeDeUsuario() {
+        return nomeDeUsuario;
     }
 
-    public Long getId() {
-        return id;
+    public void setNomeDeUsuario(String nomeDeUsuario) {
+        this.nomeDeUsuario = nomeDeUsuario;
     }
-    public void setId(Long id) {
-        this.id = id;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -57,16 +64,5 @@ public class FuncionarioDTO implements Serializable {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
-    }
-
-    @Override
-    public String toString() {
-        return "FuncionarioDTO{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", cro=" + cro +
-                ", admin=" + admin +
-                '}';
     }
 }

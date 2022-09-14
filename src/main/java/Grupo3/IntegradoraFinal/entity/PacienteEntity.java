@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
-
+@Entity
 @Table(name = "Paciente")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
@@ -15,7 +15,7 @@ public class PacienteEntity {
     private Long idPaciente;
     private String nome;
     private String sobrenome;
-    @Column(unique = true, nullable = false)
+
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     private EnderecoEntity endereco;
     @Column(nullable = false)

@@ -27,7 +27,6 @@ public class ConsultaService implements IService<ConsultaDTO> {
         return consulta;
     }
 
-    @Override
     public ConsultaDTO create(ConsultaDTO consultaDTO) {
         return null;
     }

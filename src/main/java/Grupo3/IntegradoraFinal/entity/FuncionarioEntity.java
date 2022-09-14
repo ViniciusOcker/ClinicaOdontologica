@@ -1,6 +1,9 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarFuncionarioDTO;
+import Grupo3.IntegradoraFinal.entity.dto.FuncionarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -36,6 +39,15 @@ public class FuncionarioEntity {
 
     public FuncionarioEntity() {
     }
+
+    public FuncionarioEntity(CriarFuncionarioDTO criarFuncionarioDTO, Long idUsuario) {
+        this.nome = criarFuncionarioDTO.getNome();
+        this.sobrenome =criarFuncionarioDTO.getSobrenome();
+        this.cro = criarFuncionarioDTO.getCro();
+        this.admin = criarFuncionarioDTO.isAdmin();
+        this.usuario = new UsuarioEntity(idUsuario);
+    }
+
 
     public Long getIdFuncionario() {
         return idFuncionario;

@@ -15,11 +15,11 @@ public class ConsultaEntity {
     private Long id;
     @ManyToOne
     @JoinColumn(name="idPaciente", nullable=false)
-    @Column(nullable = false)
+
     private PacienteEntity paciente;
     @ManyToOne
     @JoinColumn(name="idFuncionario", nullable=false)
-    @Column(nullable = false)
+
     private FuncionarioEntity funcionario;
     @Column(unique = true, nullable = false)
     private LocalDateTime inicioConsulta;
@@ -45,7 +45,7 @@ public class ConsultaEntity {
         this.id = id;
     }
 
-    public PacienteEntity getPaciente() {
+   public PacienteEntity getPaciente() {
         return paciente;
     }
 
@@ -53,7 +53,7 @@ public class ConsultaEntity {
         this.paciente = paciente;
     }
 
-    public FuncionarioEntity getFuncionario() {
+   public FuncionarioEntity getFuncionario() {
         return funcionario;
     }
 
