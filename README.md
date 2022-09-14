@@ -11,7 +11,7 @@
 
 
 
-# 📁 Project Objective :star:
+# 📁 Projeto | Objetivo :star:
 
 Para Prática, Aplicação e Avaliação dos conhecimentos em BACK-END-CTD em Java.
 
@@ -21,25 +21,25 @@ Esse Sistema será criado com o uso de Java, SpringBoot e com Banco de Dados.
 
 :construction: Projeto em construção :construction:
 
-## ✔️ Requirements: 
+## ✔️ Requisitos: 
 
 - `Administração de dados Odontológicos`
 - `Administração de Pacientes`
 - `Login`
 - `Registrar consulta`
 
-## ✔️ Tasks:
+## ✔️ Tarefas:
 
 - `Criação de Testes Unitários`
 - `Integração com APIs`
 
-## 🛠️ Techniques and Technologies 
+## 🛠️ Técnicas e Tecnologias 
 
 - ``Java 8``
 - ``InteliJ IDEA``
-- ``Paradigma de orientação a objetos``
+- ``Paradigma de Orientação a Objetos``
 
-## 👨‍🎓 Authors | 3° Group
+## 👨‍🎓 Autores | Grupo 3 
 
 | [<img src="https://avatars.githubusercontent.com/u/60163731?v=4" width=115><br><sub>Vinicius Ocker Fagundes</sub>](https://github.com/ViniciusOcker) |  [<img src="https://avatars.githubusercontent.com/u/86082822?s=96&v=4" width=115><br><sub>Ladislau Alexandre</sub>](https://github.com/LAYASUARES) |  [<img src="https://avatars.githubusercontent.com/u/37387009?v=4" width=115><br><sub>Roberto Castro</sub>](https://github.com/betokast) | [<img src="https://avatars.githubusercontent.com/u/69219182?v=4" width=115><br><sub>Matheus Ferraioli</sub>](https://github.com/ferraioli) | [<img src="https://avatars.githubusercontent.com/u/89046095?v=4" width=115><br><sub>Ualace Santos</sub>](https://github.com/Ualace36)
 | :---: | :---: | :---: | :---: | :---: | 
