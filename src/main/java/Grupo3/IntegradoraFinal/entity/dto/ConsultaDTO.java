@@ -1,6 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.FuncionarioEntity;
+import Grupo3.IntegradoraFinal.entity.DentistaEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 
 import java.io.Serializable;
@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 public class ConsultaDTO implements Serializable {
     private Long id;
     private PacienteEntity paciente;
-    private FuncionarioEntity funcionario;
+    private DentistaEntity dentista;
     private LocalDateTime inicioConsulta;
     private LocalDateTime fimConsulta;
 
-    public ConsultaDTO(Long id, PacienteEntity paciente, FuncionarioEntity funcionario, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public ConsultaDTO(Long id, PacienteEntity paciente, DentistaEntity dentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
         this.id = id;
         this.paciente = paciente;
-        this.funcionario = funcionario;
+        this.dentista = dentista;
         this.inicioConsulta = inicioConsulta;
         this.fimConsulta = fimConsulta;
     }
@@ -40,12 +40,12 @@ public class ConsultaDTO implements Serializable {
         this.paciente = paciente;
     }
 
-    public FuncionarioEntity getFuncionario() {
-        return funcionario;
+    public DentistaEntity getDentista() {
+        return dentista;
     }
 
-    public void setFuncionario(FuncionarioEntity funcionario) {
-        this.funcionario = funcionario;
+    public void setDentista(DentistaEntity dentista) {
+        this.dentista = dentista;
     }
 
     public LocalDateTime getInicioConsulta() {
@@ -62,16 +62,5 @@ public class ConsultaDTO implements Serializable {
 
     public void setFimConsulta(LocalDateTime fimConsulta) {
         this.fimConsulta = fimConsulta;
-    }
-
-    @Override
-    public String toString() {
-        return "ConsultaDTO{" +
-                "id=" + id +
-                ", paciente=" + paciente +
-                ", funcionario=" + funcionario +
-                ", inicioConsulta=" + inicioConsulta +
-                ", fimConsulta=" + fimConsulta +
-                '}';
     }
 }

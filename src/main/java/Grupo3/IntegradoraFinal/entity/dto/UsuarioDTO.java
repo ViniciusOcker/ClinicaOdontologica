@@ -6,11 +6,13 @@ public class UsuarioDTO implements Serializable {
     private Long id;
     private String nomeDeUsuario;
     private String senha;
+    private boolean admin;
 
-    public UsuarioDTO(Long id, String nomeDeUsuario, String senha) {
+    public UsuarioDTO(Long id, String nomeDeUsuario, String senha, boolean admin) {
         this.id = id;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
+        this.admin = admin;
     }
 
     public UsuarioDTO() {
@@ -40,12 +42,11 @@ public class UsuarioDTO implements Serializable {
         this.senha = senha;
     }
 
-    @Override
-    public String toString() {
-        return "UsuarioDTO{" +
-                "id=" + id +
-                ", nomeDeUsuario='" + nomeDeUsuario + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

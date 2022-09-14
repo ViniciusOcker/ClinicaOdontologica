@@ -1,9 +1,7 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
-import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
-import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.repository.IUsuarioRepository;
 import Grupo3.IntegradoraFinal.service.IService;
@@ -11,10 +9,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IService<UsuarioDTO> {
     @Autowired
     IUsuarioRepository usuarioRepository;
 
@@ -30,28 +29,31 @@ public class UsuarioService {
         return usuario;
     }
 
-
     public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO) {
         return mapperEntityToDTO(usuarioRepository.saveAndFlush(new UsuarioEntity(criarUsuarioDTO)));
     }
 
-
-    public UsuarioDTO getById(int id) {
-        return null;
+    @Override
+    public UsuarioDTO getById(Long id) {
+        return mapperEntityToDTO(usuarioRepository.findById(id).get());
     }
 
-
+    @Override
     public List<UsuarioDTO> getByAll() {
+        List<UsuarioDTO> usuarioList = new ArrayList<>();
+        for (UsuarioEntity usuario : usuarioRepository.findAll()) {
+            usuarioList.add(mapperEntityToDTO(usuario));
+        }
+        return usuarioList;
+    }
+
+    @Override
+    public String delete(Long id) {
         return null;
     }
 
-
-    public String delete(int id) {
-        return null;
-    }
-
-
-    public UsuarioDTO update(int id, UsuarioDTO usuarioDTO) {
+    @Override
+    public UsuarioDTO update(Long id, UsuarioDTO usuarioDTO) {
         return null;
     }
 }
