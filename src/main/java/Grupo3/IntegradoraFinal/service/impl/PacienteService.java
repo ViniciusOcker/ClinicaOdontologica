@@ -53,7 +53,15 @@ public class PacienteService implements IService<PacienteDTO> {
 
     @Override
     public String delete(Long id) {
-        return null;
+        PacienteEntity paciente = pacienteRepository.findById(id).get();
+        Long idEndereco = paciente.getEndereco().getIdEndereco();
+        if(enderecoService.delete(idEndereco).equals(idEndereco.toString())){
+            pacienteRepository.delete(new PacienteEntity(id));
+            return "O paciente " + id + " foi deletado com sucesso!";
+        }
+        else{
+            return "Erro ao deletar!";
+        }
     }
 
     @Override

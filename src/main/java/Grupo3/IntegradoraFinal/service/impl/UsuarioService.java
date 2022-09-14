@@ -49,7 +49,8 @@ public class UsuarioService implements IService<UsuarioDTO> {
 
     @Override
     public String delete(Long id) {
-        return null;
+        usuarioRepository.delete(new UsuarioEntity(id));
+        return "O usuario " + id + " foi deletado com sucesso!";
     }
 
     @Override

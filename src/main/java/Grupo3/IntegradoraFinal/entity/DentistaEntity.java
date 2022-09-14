@@ -37,6 +37,10 @@ public class DentistaEntity {
         this.cro = criarDentistaDTO.getCro();
     }
 
+    public DentistaEntity(Long idDentista) {
+        this.idDentista = idDentista;
+    }
+
     public Long getIdDentista() {
         return idDentista;
     }

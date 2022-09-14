@@ -50,7 +50,8 @@ public class ConsultaService implements IService<ConsultaDTO> {
 
     @Override
     public String delete(Long id) {
-        return null;
+        consultaRepository.delete(new ConsultaEntity(id));
+        return "A consulta " + id + " foi deletada comsucesso!";
     }
 
     @Override

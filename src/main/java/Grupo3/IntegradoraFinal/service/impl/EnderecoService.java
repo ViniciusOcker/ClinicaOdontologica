@@ -47,7 +47,8 @@ public class EnderecoService  {
     }
 
     public String delete(Long id) {
-        return null;
+        enderecoRepository.delete(new EnderecoEntity(id));
+        return id.toString();
     }
 
     public EnderecoDTO update(Long id, EnderecoDTO enderecoDTO) {

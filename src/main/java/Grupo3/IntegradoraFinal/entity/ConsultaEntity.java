@@ -12,7 +12,7 @@ public class ConsultaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idConsulta")
-    private Long id;
+    private Long idConsulta;
     @ManyToOne
     @JoinColumn(name="idPaciente", nullable=false)
 
@@ -26,8 +26,8 @@ public class ConsultaEntity {
     @Column(unique = true, nullable = false)
     private LocalDateTime fimConsulta;
 
-    public ConsultaEntity(Long id, PacienteEntity paciente, DentistaEntity dentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
-        this.id = id;
+    public ConsultaEntity(Long idConsulta, PacienteEntity paciente, DentistaEntity dentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+        this.idConsulta = idConsulta;
         this.paciente = paciente;
         this.dentista = dentista;
         this.inicioConsulta = inicioConsulta;
@@ -37,12 +37,16 @@ public class ConsultaEntity {
     public ConsultaEntity() {
     }
 
-    public Long getId() {
-        return id;
+    public ConsultaEntity(Long idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdConsulta() {
+        return idConsulta;
+    }
+
+    public void setIdConsulta(Long idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
     public PacienteEntity getPaciente() {

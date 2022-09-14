@@ -3,7 +3,6 @@ package Grupo3.IntegradoraFinal.entity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name ="Usuario")
@@ -12,15 +11,15 @@ public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
-    private Long id;
+    private Long idUsuario;
     @Column(unique = true, nullable = false)
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
     private boolean admin;
 
-    public UsuarioEntity(Long id, String nomeDeUsuario, String senha, boolean admin) {
-        this.id = id;
+    public UsuarioEntity(Long idUsuario, String nomeDeUsuario, String senha, boolean admin) {
+        this.idUsuario = idUsuario;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
         this.admin = admin;
@@ -35,12 +34,16 @@ public class UsuarioEntity {
         this.admin = criarUsuarioDTO.isAdmin();
     }
 
-    public Long getId() {
-        return id;
+    public UsuarioEntity(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNomeDeUsuario() {
