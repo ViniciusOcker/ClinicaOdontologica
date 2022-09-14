@@ -15,7 +15,7 @@
 
 Para Prática, Aplicação e Avaliação dos conhecimentos em BACK-END-CTD em Java.
 
-Criação de um Sistema que permita administrar a reservar e marcação de consultas para uma ou qualquer Instituição Odonlogica.
+Criação de um Sistema que permita administrar a reserva e marcação de consultas para uma ou qualquer Instituição Odonlogica.
 Esse Sistema será criado com o uso de Java, SpringBoot e com Banco de Dados.
 
 
