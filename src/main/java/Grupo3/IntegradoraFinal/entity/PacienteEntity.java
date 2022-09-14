@@ -22,7 +22,7 @@ public class PacienteEntity {
     @Column(nullable = false)
     private String rg;
     private LocalDate dataDeAlta;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "idConsulta")
     private Set<ConsultaEntity> consultas;
 
     public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> consultas) {
@@ -44,6 +44,10 @@ public class PacienteEntity {
         this.endereco = new EnderecoEntity(id);
         this.rg = criarPacienteDTO.getRg();
         this.dataDeAlta = null;
+    }
+
+    public PacienteEntity(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public Long getIdPaciente() {
