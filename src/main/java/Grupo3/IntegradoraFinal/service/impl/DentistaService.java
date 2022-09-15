@@ -1,9 +1,12 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
 import Grupo3.IntegradoraFinal.entity.DentistaEntity;
+import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
+import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarDentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.DentistaDTO;
+import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.repository.IDentistaRepository;
 import Grupo3.IntegradoraFinal.service.IService;
@@ -57,8 +60,17 @@ public class DentistaService implements IService<DentistaDTO> {
         return "Dentista " + id + "foi deletado com sucesso!";
     }
 
-    @Override
-    public DentistaDTO update(Long id, DentistaDTO dentistaDTO) {
-        return null;
+    public DentistaDTO update(Long id, CriarDentistaDTO criarDentistaDTO) {
+        DentistaEntity dentista = new DentistaEntity(criarDentistaDTO);
+        dentista.setIdDentista(id);
+        return mapperEntityToDTO(dentistaRepository.saveAndFlush(dentista));
+    }
+
+    public List<DentistaDTO> findDentista(String nomeCompleto){
+        List<DentistaDTO> dentistaDTOList = new ArrayList<>();
+        for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nomeCompleto+"%")) {
+            dentistaDTOList.add(mapperEntityToDTO(dentista));
+        }
+        return dentistaDTOList;
     }
 }

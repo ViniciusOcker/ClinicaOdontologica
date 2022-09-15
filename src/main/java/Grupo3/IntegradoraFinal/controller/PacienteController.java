@@ -36,7 +36,12 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public PacienteDTO update(@PathVariable Long id, @RequestBody PacienteDTO pacienteDTO){
-        return pacienteService.update(id, pacienteDTO);
+    public PacienteDTO update(@PathVariable Long id, @RequestBody CriarPacienteDTO criarPacienteDTO){
+        return pacienteService.update(id, criarPacienteDTO);
+    }
+
+    @GetMapping("/search")
+    public List<PacienteDTO> buscarPeloNomeCompleto(@RequestParam String nomeCompleto){
+        return pacienteService.findPaciente(nomeCompleto);
     }
 }

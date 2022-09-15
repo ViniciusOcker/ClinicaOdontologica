@@ -1,11 +1,9 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
 import Grupo3.IntegradoraFinal.entity.ConsultaEntity;
-import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
-import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
+import Grupo3.IntegradoraFinal.entity.dto.CriarConsultaDTO;
 import Grupo3.IntegradoraFinal.repository.IConsultaRepository;
 import Grupo3.IntegradoraFinal.service.IService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import Grupo3.IntegradoraFinal.entity.dto.ConsultaDTO;
@@ -18,32 +16,20 @@ public class ConsultaService implements IService<ConsultaDTO> {
     @Autowired
     IConsultaRepository consultaRepository;
 
-    private ConsultaEntity mapperDTOToEntity(ConsultaDTO consultaDTO) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ConsultaEntity consulta = objectMapper.convertValue(consultaDTO, ConsultaEntity.class);
-        return consulta;
-    }
-
-    private ConsultaDTO mapperEntityToDTO(ConsultaEntity consultaEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ConsultaDTO consulta = objectMapper.convertValue(consultaEntity, ConsultaDTO.class);
-        return consulta;
-    }
-
-    public ConsultaDTO create(ConsultaDTO consultaDTO) {
-        return null;
+    public ConsultaDTO create(CriarConsultaDTO criarConsultaDTO) {
+        return new ConsultaDTO(consultaRepository.saveAndFlush(new ConsultaEntity(criarConsultaDTO)));
     }
 
     @Override
     public ConsultaDTO getById(Long id) {
-        return mapperEntityToDTO(consultaRepository.findById(id).get());
+        return new ConsultaDTO(consultaRepository.findById(id).get());
     }
 
     @Override
     public List<ConsultaDTO> getByAll() {
         List<ConsultaDTO> consultaList = new ArrayList<>();
         for (ConsultaEntity consulta : consultaRepository.findAll()) {
-            consultaList.add(mapperEntityToDTO(consulta));
+            consultaList.add(new ConsultaDTO(consulta));
         }
         return consultaList;
     }
@@ -54,8 +40,9 @@ public class ConsultaService implements IService<ConsultaDTO> {
         return "A consulta " + id + " foi deletada comsucesso!";
     }
 
-    @Override
-    public ConsultaDTO update(Long id, ConsultaDTO consultaDTO) {
-        return null;
+    public ConsultaDTO update(Long id, CriarConsultaDTO criarConsultaDTO) {
+        ConsultaEntity consultaEntity = new ConsultaEntity(criarConsultaDTO);
+        consultaEntity.setIdConsulta(id);
+        return new ConsultaDTO(consultaRepository.saveAndFlush(consultaEntity));
     }
 }

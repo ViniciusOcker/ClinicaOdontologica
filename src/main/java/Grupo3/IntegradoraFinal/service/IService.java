@@ -6,5 +6,4 @@ public interface IService<T>{
     T getById(Long id);
     List<T> getByAll();
     String delete(Long id);
-    T update(Long id,T t);
 }

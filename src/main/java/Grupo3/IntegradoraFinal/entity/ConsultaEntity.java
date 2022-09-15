@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.entity;
 
+import Grupo3.IntegradoraFinal.entity.dto.CriarConsultaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -39,6 +40,13 @@ public class ConsultaEntity {
 
     public ConsultaEntity(Long idConsulta) {
         this.idConsulta = idConsulta;
+    }
+
+    public ConsultaEntity(CriarConsultaDTO criarConsultaDTO) {
+        this.paciente = new PacienteEntity(criarConsultaDTO.getIdPaciente());
+        this.dentista = new DentistaEntity(criarConsultaDTO.getIdDentista());
+        this.inicioConsulta = criarConsultaDTO.getInicioConsulta();
+        this.fimConsulta = criarConsultaDTO.getFimConsulta();
     }
 
     public Long getIdConsulta() {

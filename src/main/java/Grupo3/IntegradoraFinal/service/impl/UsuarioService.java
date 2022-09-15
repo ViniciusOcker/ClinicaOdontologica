@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
+import Grupo3.IntegradoraFinal.entity.ConsultaEntity;
 import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
@@ -53,8 +54,9 @@ public class UsuarioService implements IService<UsuarioDTO> {
         return "O usuario " + id + " foi deletado com sucesso!";
     }
 
-    @Override
-    public UsuarioDTO update(Long id, UsuarioDTO usuarioDTO) {
-        return null;
+    public UsuarioDTO update(Long id, CriarUsuarioDTO criarUsuarioDTO) {
+        UsuarioEntity usuario = new UsuarioEntity(criarUsuarioDTO);
+        usuario.setIdUsuario(id);
+        return mapperEntityToDTO(usuarioRepository.saveAndFlush(usuario));
     }
 }
