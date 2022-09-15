@@ -4,6 +4,7 @@ import Grupo3.IntegradoraFinal.entity.dto.CriarPacienteDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 @Entity
 @Table(name = "Paciente")
@@ -21,18 +22,15 @@ public class PacienteEntity {
     private EnderecoEntity endereco;
     @Column(nullable = false)
     private String rg;
-    private LocalDate dataDeAlta;
-    @OneToMany(mappedBy = "idConsulta")
-    private Set<ConsultaEntity> consultas;
+    private String dataDeAlta;
 
-    public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, LocalDate dataDeAlta, Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> consultas) {
+    public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, String dataDeAlta) {
         this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
         this.dataDeAlta = dataDeAlta;
-        this.consultas = consultas;
     }
 
     public PacienteEntity() {
@@ -43,7 +41,7 @@ public class PacienteEntity {
         this.sobrenome = criarPacienteDTO.getSobrenome();
         this.endereco = new EnderecoEntity(id);
         this.rg = criarPacienteDTO.getRg();
-        this.dataDeAlta = null;
+        this.dataDeAlta = criarPacienteDTO.getDataDeAlta();
     }
 
     public PacienteEntity(Long idPaciente) {
@@ -90,19 +88,11 @@ public class PacienteEntity {
         this.rg = rg;
     }
 
-    public LocalDate getDataDeAlta() {
+    public String getDataDeAlta() {
         return dataDeAlta;
     }
 
-    public void setDataDeAlta(LocalDate dataDeAlta) {
+    public void setDataDeAlta(String dataDeAlta) {
         this.dataDeAlta = dataDeAlta;
-    }
-
-    public Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> getConsultas() {
-        return consultas;
-    }
-
-    public void setConsultas(Set<Grupo3.IntegradoraFinal.entity.ConsultaEntity> consultas) {
-        this.consultas = consultas;
     }
 }

@@ -2,40 +2,34 @@ package Grupo3.IntegradoraFinal.entity.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class PacienteDTO implements Serializable {
-    private Long id;
+    private Long idPaciente;
     private String nome;
     private String sobrenome;
     private EnderecoDTO endereco;
     private String rg;
-    private LocalDate dataDeAlta;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private String dataDeAlta;
 
-    public PacienteDTO(Long id, String nome, String sobrenome, EnderecoDTO endereco, String rg, LocalDate dataDeAlta, DateTimeFormatter formatter) {
-        this.id = id;
+    public PacienteDTO(Long idPaciente, String nome, String sobrenome, EnderecoDTO endereco, String rg, String dataDeAlta) {
+        this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
         this.dataDeAlta = dataDeAlta;
-        this.formatter = formatter;
     }
 
     public PacienteDTO() {
     }
 
-    public PacienteDTO(CriarPacienteDTO criarPacienteDTO) {
-        this.id = id;
+    public Long getIdPaciente() {
+        return idPaciente;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNome() {
@@ -70,19 +64,11 @@ public class PacienteDTO implements Serializable {
         this.rg = rg;
     }
 
-    public LocalDate getDataDeAlta() {
+    public String getDataDeAlta() {
         return dataDeAlta;
     }
 
-    public void setDataDeAlta(LocalDate dataDeAlta) {
+    public void setDataDeAlta(String dataDeAlta) {
         this.dataDeAlta = dataDeAlta;
-    }
-
-    public DateTimeFormatter getFormatter() {
-        return formatter;
-    }
-
-    public void setFormatter(DateTimeFormatter formatter) {
-        this.formatter = formatter;
     }
 }

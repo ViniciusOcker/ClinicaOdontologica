@@ -1,6 +1,8 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-public class CriarEnderecoDTO {
+import java.io.Serializable;
+
+public class CriarEnderecoDTO implements Serializable {
     private String complemento;
     private String rua;
     private String numero;

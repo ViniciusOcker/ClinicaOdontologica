@@ -13,6 +13,6 @@ import java.util.Map;
 @Repository
 public interface IPacienteRepository extends JpaRepository<PacienteEntity, Long> {
 
-    @Query(value="SELECT CONCAT(nome,CONCAT(' ',sobrenome)) AS nomeCompleto FROM Paciente WHERE nomeCompleto LIKE ?1", nativeQuery=true)
-    List<PacienteEntity> findNameFull(String nomeCompleto);
+    @Query(value="SELECT * FROM Paciente WHERE nome LIKE ?1 AND sobrenome LIKE ?2", nativeQuery=true)
+    List<PacienteEntity> findNameFull(String nome, String sobrenome);
 }

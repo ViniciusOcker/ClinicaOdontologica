@@ -3,13 +3,13 @@ package Grupo3.IntegradoraFinal.entity.dto;
 import java.io.Serializable;
 
 public class UsuarioDTO implements Serializable {
-    private Long id;
+    private Long idUsuario;
     private String nomeDeUsuario;
     private String senha;
-    private boolean admin;
+    private Boolean admin;
 
-    public UsuarioDTO(Long id, String nomeDeUsuario, String senha, boolean admin) {
-        this.id = id;
+    public UsuarioDTO(Long idUsuario, String nomeDeUsuario, String senha, Boolean admin) {
+        this.idUsuario = idUsuario;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
         this.admin = admin;
@@ -18,12 +18,12 @@ public class UsuarioDTO implements Serializable {
     public UsuarioDTO() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNomeDeUsuario() {
@@ -42,11 +42,11 @@ public class UsuarioDTO implements Serializable {
         this.senha = senha;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 }

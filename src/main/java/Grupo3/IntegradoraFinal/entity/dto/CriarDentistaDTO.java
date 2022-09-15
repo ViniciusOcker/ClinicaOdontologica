@@ -1,6 +1,8 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-public class CriarDentistaDTO {
+import java.io.Serializable;
+
+public class CriarDentistaDTO implements Serializable {
     private String nome;
     private String sobrenome;
     private String cro;
