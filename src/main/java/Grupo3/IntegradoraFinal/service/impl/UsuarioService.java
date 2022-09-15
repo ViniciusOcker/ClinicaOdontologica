@@ -18,32 +18,20 @@ public class UsuarioService implements IService<UsuarioDTO> {
     @Autowired
     IUsuarioRepository usuarioRepository;
 
-    private UsuarioEntity mapperDTOToEntity(UsuarioDTO usuarioDTO) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        UsuarioEntity usuario = objectMapper.convertValue(usuarioDTO, UsuarioEntity.class);
-        return usuario;
-    }
-
-    private UsuarioDTO mapperEntityToDTO(UsuarioEntity usuarioEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        UsuarioDTO usuario = objectMapper.convertValue(usuarioEntity, UsuarioDTO.class);
-        return usuario;
-    }
-
     public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO) {
-        return mapperEntityToDTO(usuarioRepository.saveAndFlush(new UsuarioEntity(criarUsuarioDTO)));
+        return new UsuarioDTO(usuarioRepository.saveAndFlush(new UsuarioEntity(criarUsuarioDTO)));
     }
 
     @Override
     public UsuarioDTO getById(Long id) {
-        return mapperEntityToDTO(usuarioRepository.findById(id).get());
+        return new UsuarioDTO(usuarioRepository.findById(id).get());
     }
 
     @Override
     public List<UsuarioDTO> getByAll() {
         List<UsuarioDTO> usuarioList = new ArrayList<>();
         for (UsuarioEntity usuario : usuarioRepository.findAll()) {
-            usuarioList.add(mapperEntityToDTO(usuario));
+            usuarioList.add(new UsuarioDTO(usuario));
         }
         return usuarioList;
     }
@@ -57,6 +45,6 @@ public class UsuarioService implements IService<UsuarioDTO> {
     public UsuarioDTO update(Long id, CriarUsuarioDTO criarUsuarioDTO) {
         UsuarioEntity usuario = new UsuarioEntity(criarUsuarioDTO);
         usuario.setIdUsuario(id);
-        return mapperEntityToDTO(usuarioRepository.saveAndFlush(usuario));
+        return new UsuarioDTO(usuarioRepository.saveAndFlush(usuario));
     }
 }

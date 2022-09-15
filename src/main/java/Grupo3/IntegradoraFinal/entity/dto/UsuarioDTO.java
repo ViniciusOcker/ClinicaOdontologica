@@ -1,5 +1,7 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
+import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
+
 import java.io.Serializable;
 
 public class UsuarioDTO implements Serializable {
@@ -16,6 +18,13 @@ public class UsuarioDTO implements Serializable {
     }
 
     public UsuarioDTO() {
+    }
+
+    public UsuarioDTO(UsuarioEntity usuarioEntity) {
+        this.idUsuario = usuarioEntity.getIdUsuario();
+        this.nomeDeUsuario = usuarioEntity.getNomeDeUsuario();
+        this.senha = usuarioEntity.getSenha();
+        this.admin = usuarioEntity.getAdmin();
     }
 
     public Long getIdUsuario() {

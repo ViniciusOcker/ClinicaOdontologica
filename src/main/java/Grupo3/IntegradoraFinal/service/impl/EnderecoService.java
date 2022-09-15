@@ -18,30 +18,18 @@ public class EnderecoService  {
     @Autowired
     IEnderecoRepository enderecoRepository;
 
-    private EnderecoEntity mapperDTOToEntity(EnderecoDTO enderecoDTO) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        EnderecoEntity endereco = objectMapper.convertValue(enderecoDTO, EnderecoEntity.class);
-        return endereco;
-    }
-
-    private EnderecoDTO mapperEntityToDTO(EnderecoEntity enderecoEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        EnderecoDTO endereco = objectMapper.convertValue(enderecoEntity, EnderecoDTO.class);
-        return endereco;
-    }
-
     public EnderecoDTO create(CriarEnderecoDTO criarEnderecoDTO) {
-        return mapperEntityToDTO(enderecoRepository.saveAndFlush(new EnderecoEntity(criarEnderecoDTO)));
+        return new EnderecoDTO(enderecoRepository.saveAndFlush(new EnderecoEntity(criarEnderecoDTO)));
     }
 
     public EnderecoDTO getById(Long id) {
-        return mapperEntityToDTO(enderecoRepository.findById(id).get());
+        return new EnderecoDTO(enderecoRepository.findById(id).get());
     }
 
     public List<EnderecoDTO> getByAll() {
         List<EnderecoDTO> enderecoList = new ArrayList<>();
         for (EnderecoEntity endereco : enderecoRepository.findAll()) {
-            enderecoList.add(mapperEntityToDTO(endereco));
+            enderecoList.add(new EnderecoDTO(endereco));
         }
         return enderecoList;
     }
@@ -54,6 +42,6 @@ public class EnderecoService  {
     public EnderecoDTO update(Long id, CriarEnderecoDTO criarEnderecoDTO) {
         EnderecoEntity enderecoEntity = new EnderecoEntity(criarEnderecoDTO);
         enderecoEntity.setIdEndereco(id);
-        return mapperEntityToDTO(enderecoRepository.saveAndFlush(enderecoEntity));
+        return new EnderecoDTO(enderecoRepository.saveAndFlush(enderecoEntity));
     }
 }

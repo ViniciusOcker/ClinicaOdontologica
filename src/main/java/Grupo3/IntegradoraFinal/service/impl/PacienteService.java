@@ -19,35 +19,23 @@ public class PacienteService implements IService<PacienteDTO> {
     @Autowired
     private EnderecoService enderecoService;
 
-    private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        PacienteEntity paciente = objectMapper.convertValue(pacienteDTO, PacienteEntity.class);
-        return paciente;
-    }
-
-    private PacienteDTO mapperEntityToDTO(PacienteEntity pacienteEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        PacienteDTO paciente = objectMapper.convertValue(pacienteEntity, PacienteDTO.class);
-        return paciente;
-    }
-
     public PacienteDTO create(CriarPacienteDTO criarPacienteDTO) {
         EnderecoDTO enderecoDTO = enderecoService.create(criarPacienteDTO.getEndereco());
-        PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, enderecoDTO.getIdEndereco())));
+        PacienteDTO pacienteDTO = new PacienteDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, enderecoDTO.getIdEndereco())));
         pacienteDTO.setEndereco(enderecoDTO);
         return pacienteDTO;
     }
 
     @Override
     public PacienteDTO getById(Long id) {
-        return mapperEntityToDTO(pacienteRepository.findById(id).get());
+        return new PacienteDTO(pacienteRepository.findById(id).get());
     }
 
     @Override
     public List<PacienteDTO> getByAll() {
         List<PacienteDTO> pacienteList = new ArrayList<>();
         for (PacienteEntity paciente: pacienteRepository.findAll()) {
-            pacienteList.add(mapperEntityToDTO(paciente));
+            pacienteList.add(new PacienteDTO(paciente));
         }
         return pacienteList;
     }
@@ -66,13 +54,13 @@ public class PacienteService implements IService<PacienteDTO> {
         EnderecoDTO enderecoDTO = enderecoService.update(pacienteEntity.getEndereco().getIdEndereco(),criarPacienteDTO.getEndereco());
         PacienteEntity pacienteEntity2 = new PacienteEntity(criarPacienteDTO, enderecoDTO.getIdEndereco());
         pacienteEntity2.setIdPaciente(id);
-        return mapperEntityToDTO(pacienteRepository.saveAndFlush(pacienteEntity2));
+        return new PacienteDTO(pacienteRepository.saveAndFlush(pacienteEntity2));
     }
 
     public List<PacienteDTO> findPaciente(String nome, String sobrenome){
         List<PacienteDTO> pacienteDTOList = new ArrayList<>();
         for (PacienteEntity pacienteEntity:pacienteRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%")) {
-            pacienteDTOList.add(mapperEntityToDTO(pacienteEntity));
+            pacienteDTOList.add(new PacienteDTO(pacienteEntity));
         }
         return pacienteDTOList;
     }

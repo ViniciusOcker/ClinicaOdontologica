@@ -24,32 +24,20 @@ public class DentistaService implements IService<DentistaDTO> {
     @Autowired
     UsuarioService usuarioService;
 
-    private DentistaEntity mapperDTOToEntity(DentistaDTO dentistaDTO) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        DentistaEntity dentista = objectMapper.convertValue(dentistaDTO, DentistaEntity.class);
-        return dentista;
-    }
-
-    private DentistaDTO mapperEntityToDTO(DentistaEntity dentistaEntity) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        DentistaDTO dentista = objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
-        return dentista;
-    }
-
     public DentistaDTO create (CriarDentistaDTO criarDentistaDTO) {
-        return mapperEntityToDTO(dentistaRepository.saveAndFlush(new DentistaEntity(criarDentistaDTO)));
+        return new DentistaDTO(dentistaRepository.saveAndFlush(new DentistaEntity(criarDentistaDTO)));
     }
 
     @Override
     public DentistaDTO getById(Long id) {
-        return mapperEntityToDTO(dentistaRepository.findById(id).get());
+        return new DentistaDTO(dentistaRepository.findById(id).get());
     }
 
     @Override
     public List<DentistaDTO> getByAll() {
         List<DentistaDTO> dentistaList = new ArrayList<>();
         for (DentistaEntity dentista:dentistaRepository.findAll()) {
-            dentistaList.add(mapperEntityToDTO(dentista));
+            dentistaList.add(new DentistaDTO(dentista));
         }
         return dentistaList;
     }
@@ -63,13 +51,13 @@ public class DentistaService implements IService<DentistaDTO> {
     public DentistaDTO update(Long id, CriarDentistaDTO criarDentistaDTO) {
         DentistaEntity dentista = new DentistaEntity(criarDentistaDTO);
         dentista.setIdDentista(id);
-        return mapperEntityToDTO(dentistaRepository.saveAndFlush(dentista));
+        return new DentistaDTO(dentistaRepository.saveAndFlush(dentista));
     }
 
     public List<DentistaDTO> findDentista(String nomeCompleto){
         List<DentistaDTO> dentistaDTOList = new ArrayList<>();
         for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nomeCompleto+"%")) {
-            dentistaDTOList.add(mapperEntityToDTO(dentista));
+            dentistaDTOList.add(new DentistaDTO(dentista));
         }
         return dentistaDTOList;
     }

@@ -1,5 +1,7 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
+import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
+
 import java.io.Serializable;
 
 public class EnderecoDTO implements Serializable {
@@ -24,6 +26,17 @@ public class EnderecoDTO implements Serializable {
     }
 
     public EnderecoDTO() {
+    }
+
+    public EnderecoDTO(EnderecoEntity enderecoEntity) {
+        this.idEndereco = enderecoEntity.getIdEndereco();
+        this.complemento = enderecoEntity.getComplemento();
+        this.rua = enderecoEntity.getRua();
+        this.numero = enderecoEntity.getNumero();
+        this.bairro = enderecoEntity.getBairro();
+        this.cidade = enderecoEntity.getCidade();
+        this.estado = enderecoEntity.getEstado();
+        this.pontoDeReferencia = enderecoEntity.getPontoDeReferencia();
     }
 
     public Long getIdEndereco() {
