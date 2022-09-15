@@ -1,5 +1,6 @@
 package Grupo3.IntegradoraFinal.service.impl;
 
+import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import Grupo3.IntegradoraFinal.entity.UsuarioEntity;
 import Grupo3.IntegradoraFinal.entity.dto.*;
@@ -64,8 +65,19 @@ public class PacienteService implements IService<PacienteDTO> {
         }
     }
 
-    @Override
-    public PacienteDTO update(Long id, PacienteDTO pacienteDTO) {
-        return null;
+    public PacienteDTO update(Long id, CriarPacienteDTO criarPacienteDTO) {
+        PacienteEntity pacienteEntity = pacienteRepository.findById(id).get();
+        EnderecoDTO enderecoDTO = enderecoService.update(pacienteEntity.getEndereco().getIdEndereco(),criarPacienteDTO.getEndereco());
+        PacienteEntity pacienteEntity2 = new PacienteEntity(criarPacienteDTO, enderecoDTO.getId());
+        pacienteEntity2.setIdPaciente(id);
+        return mapperEntityToDTO(pacienteRepository.saveAndFlush(pacienteEntity2));
+    }
+
+    public List<PacienteDTO> findPaciente(String nomeCompleto){
+        List<PacienteDTO> pacienteDTOList = new ArrayList<>();
+        for (PacienteEntity pacienteEntity:pacienteRepository.findNameFull("%"+nomeCompleto+"%")) {
+            pacienteDTOList.add(mapperEntityToDTO(pacienteEntity));
+        }
+        return pacienteDTOList;
     }
 }

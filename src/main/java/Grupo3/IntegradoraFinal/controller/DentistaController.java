@@ -2,6 +2,7 @@ package Grupo3.IntegradoraFinal.controller;
 
 import Grupo3.IntegradoraFinal.entity.dto.CriarDentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.DentistaDTO;
+import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
 import Grupo3.IntegradoraFinal.service.impl.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +37,12 @@ public class DentistaController {
     }
 
     @PutMapping("/{id}")
-    public DentistaDTO update(@PathVariable Long id, @RequestBody DentistaDTO dentistaDTO){
-        return dentistaService.update(id, dentistaDTO);
+    public DentistaDTO update(@PathVariable Long id, @RequestBody CriarDentistaDTO criarDentistaDTO){
+        return dentistaService.update(id, criarDentistaDTO);
     }
-
+    @GetMapping("/search")
+    public List<DentistaDTO> buscarPeloNomeCompleto(@RequestParam String nomeCompleto){
+        return dentistaService.findDentista(nomeCompleto);
+    }
 }
 

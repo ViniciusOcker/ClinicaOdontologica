@@ -51,7 +51,9 @@ public class EnderecoService  {
         return id.toString();
     }
 
-    public EnderecoDTO update(Long id, EnderecoDTO enderecoDTO) {
-        return null;
+    public EnderecoDTO update(Long id, CriarEnderecoDTO criarEnderecoDTO) {
+        EnderecoEntity enderecoEntity = new EnderecoEntity(criarEnderecoDTO);
+        enderecoEntity.setIdEndereco(id);
+        return mapperEntityToDTO(enderecoRepository.saveAndFlush(enderecoEntity));
     }
 }
