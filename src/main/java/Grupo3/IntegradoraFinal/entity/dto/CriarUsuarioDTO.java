@@ -1,11 +1,13 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-public class CriarUsuarioDTO {
+import java.io.Serializable;
+
+public class CriarUsuarioDTO implements Serializable {
     private String nomeDeUsuario;
     private String senha;
-    private boolean admin;
+    private Boolean admin;
 
-    public CriarUsuarioDTO(String nomeDeUsuario, String senha, boolean admin) {
+    public CriarUsuarioDTO(String nomeDeUsuario, String senha, Boolean admin) {
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
         this.admin = admin;
@@ -30,11 +32,11 @@ public class CriarUsuarioDTO {
         this.senha = senha;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 }

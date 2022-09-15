@@ -1,21 +1,19 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
 import Grupo3.IntegradoraFinal.entity.ConsultaEntity;
-import Grupo3.IntegradoraFinal.entity.DentistaEntity;
-import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class ConsultaDTO implements Serializable {
-    private Long id;
+    private Long idConsulta;
     private Long idPaciente;
     private Long idDentista;
     private LocalDateTime inicioConsulta;
     private LocalDateTime fimConsulta;
 
-    public ConsultaDTO(Long id, Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
-        this.id = id;
+    public ConsultaDTO(Long idConsulta, Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+        this.idConsulta = idConsulta;
         this.idPaciente = idPaciente;
         this.idDentista = idDentista;
         this.inicioConsulta = inicioConsulta;
@@ -26,19 +24,19 @@ public class ConsultaDTO implements Serializable {
     }
 
     public ConsultaDTO(ConsultaEntity consultaEntity) {
-        this.id = consultaEntity.getIdConsulta();
+        this.idConsulta = consultaEntity.getIdConsulta();
         this.idPaciente = consultaEntity.getPaciente().getIdPaciente();
         this.idDentista = consultaEntity.getDentista().getIdDentista();
         this.inicioConsulta = consultaEntity.getInicioConsulta();
         this.fimConsulta = consultaEntity.getFimConsulta();
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdConsulta() {
+        return idConsulta;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdConsulta(Long idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
     public Long getIdPaciente() {

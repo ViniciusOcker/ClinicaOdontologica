@@ -41,7 +41,7 @@ public class PacienteController {
     }
 
     @GetMapping("/search")
-    public List<PacienteDTO> buscarPeloNomeCompleto(@RequestParam String nomeCompleto){
-        return pacienteService.findPaciente(nomeCompleto);
+    public List<PacienteDTO> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome){
+        return pacienteService.findPaciente(nome, sobrenome);
     }
 }

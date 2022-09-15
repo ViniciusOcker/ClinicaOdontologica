@@ -16,9 +16,9 @@ public class UsuarioEntity {
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
-    private boolean admin;
+    private Boolean admin;
 
-    public UsuarioEntity(Long idUsuario, String nomeDeUsuario, String senha, boolean admin) {
+    public UsuarioEntity(Long idUsuario, String nomeDeUsuario, String senha, Boolean admin) {
         this.idUsuario = idUsuario;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
@@ -32,6 +32,7 @@ public class UsuarioEntity {
         this.nomeDeUsuario = criarUsuarioDTO.getNomeDeUsuario();
         this.senha = criarUsuarioDTO.getSenha();
         this.admin = criarUsuarioDTO.isAdmin();
+        this.idUsuario = null;
     }
 
     public UsuarioEntity(Long idUsuario) {
@@ -60,5 +61,13 @@ public class UsuarioEntity {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 }

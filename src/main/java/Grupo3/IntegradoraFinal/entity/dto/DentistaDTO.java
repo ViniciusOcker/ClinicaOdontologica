@@ -3,13 +3,13 @@ package Grupo3.IntegradoraFinal.entity.dto;
 import java.io.Serializable;
 
 public class DentistaDTO implements Serializable {
-    private Long id;
+    private Long idDentista;
     private String nome;
     private String sobrenome;
     private String cro;
 
-    public DentistaDTO(Long id, String nome, String sobrenome, String cro, boolean admin) {
-        this.id = id;
+    public DentistaDTO(Long idDentista, String nome, String sobrenome, String cro, boolean admin) {
+        this.idDentista = idDentista;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cro = cro;
@@ -18,11 +18,11 @@ public class DentistaDTO implements Serializable {
     public DentistaDTO() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdDentista() {
+        return idDentista;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdDentista(Long idDentista) {
+        this.idDentista = idDentista;
     }
 
     public String getNome() {

@@ -1,12 +1,9 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
-import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
-
-import javax.persistence.Column;
 import java.io.Serializable;
 
 public class EnderecoDTO implements Serializable {
-    private Long id;
+    private Long idEndereco;
     private String complemento;
     private String rua;
     private String numero;
@@ -15,8 +12,8 @@ public class EnderecoDTO implements Serializable {
     private String estado;
     private String pontoDeReferencia;
 
-    public EnderecoDTO(Long id, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
-        this.id = id;
+    public EnderecoDTO(Long idEndereco, String complemento, String rua, String numero, String bairro, String cidade, String estado, String pontoDeReferencia) {
+        this.idEndereco = idEndereco;
         this.complemento = complemento;
         this.rua = rua;
         this.numero = numero;
@@ -29,12 +26,12 @@ public class EnderecoDTO implements Serializable {
     public EnderecoDTO() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEndereco(Long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getComplemento() {
