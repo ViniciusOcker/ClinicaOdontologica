@@ -1,5 +1,7 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
+import Grupo3.IntegradoraFinal.entity.DentistaEntity;
+
 import java.io.Serializable;
 
 public class DentistaDTO implements Serializable {
@@ -16,6 +18,13 @@ public class DentistaDTO implements Serializable {
     }
 
     public DentistaDTO() {
+    }
+
+    public DentistaDTO(DentistaEntity dentistaEntity) {
+        this.idDentista = dentistaEntity.getIdDentista();
+        this.nome = dentistaEntity.getNome();
+        this.sobrenome = dentistaEntity.getSobrenome();
+        this.cro = dentistaEntity.getCro();
     }
 
     public Long getIdDentista() {

@@ -1,5 +1,7 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
+import Grupo3.IntegradoraFinal.entity.PacienteEntity;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +24,15 @@ public class PacienteDTO implements Serializable {
     }
 
     public PacienteDTO() {
+    }
+
+    public PacienteDTO(PacienteEntity pacienteEntity) {
+        this.idPaciente = pacienteEntity.getIdPaciente();
+        this.nome = pacienteEntity.getNome();
+        this.sobrenome = pacienteEntity.getSobrenome();
+        this.endereco = new EnderecoDTO(pacienteEntity.getEndereco());
+        this.rg = pacienteEntity.getRg();
+        this.dataDeAlta = pacienteEntity.getDataDeAlta();
     }
 
     public Long getIdPaciente() {
