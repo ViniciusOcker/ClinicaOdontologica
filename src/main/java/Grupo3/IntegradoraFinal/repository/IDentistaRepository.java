@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IDentistaRepository extends JpaRepository<DentistaEntity, Long> {
-    @Query(value="SELECT CONCAT(nome,CONCAT(' ',sobrenome)) AS nomeCompleto FROM Dentista WHERE nomeCompleto LIKE ?1", nativeQuery=true)
-    List<DentistaEntity> findNameFull(String nomeCompleto);
+    @Query(value="SELECT * FROM Dentista WHERE nome LIKE ?1 AND sobrenome LIKE ?2", nativeQuery=true)
+    List<DentistaEntity> findNameFull(String nome, String sobrenome);
 }

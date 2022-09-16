@@ -41,8 +41,8 @@ public class DentistaController {
         return dentistaService.update(id, criarDentistaDTO);
     }
     @GetMapping("/search")
-    public List<DentistaDTO> buscarPeloNomeCompleto(@RequestParam String nomeCompleto){
-        return dentistaService.findDentista(nomeCompleto);
+    public List<DentistaDTO> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome){
+        return dentistaService.findDentista(nome, sobrenome);
     }
 }
 
