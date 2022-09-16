@@ -10,11 +10,10 @@ public class ConsultaDTO implements Serializable {
     private Long idConsulta;
     private Long idPaciente;
     private Long idDentista;
-    private LocalDateTime inicioConsulta;
-    private LocalDateTime fimConsulta;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private String inicioConsulta;
+    private String fimConsulta;
 
-    public ConsultaDTO(Long idConsulta, Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public ConsultaDTO(Long idConsulta, Long idPaciente, Long idDentista, String inicioConsulta, String fimConsulta) {
         this.idConsulta = idConsulta;
         this.idPaciente = idPaciente;
         this.idDentista = idDentista;
@@ -57,19 +56,19 @@ public class ConsultaDTO implements Serializable {
         this.idDentista = idDentista;
     }
 
-    public LocalDateTime getInicioConsulta() {
+    public String getInicioConsulta() {
         return inicioConsulta;
     }
 
-    public void setInicioConsulta(LocalDateTime inicioConsulta) {
+    public void setInicioConsulta(String inicioConsulta) {
         this.inicioConsulta = inicioConsulta;
     }
 
-    public LocalDateTime getFimConsulta() {
+    public String getFimConsulta() {
         return fimConsulta;
     }
 
-    public void setFimConsulta(LocalDateTime fimConsulta) {
+    public void setFimConsulta(String fimConsulta) {
         this.fimConsulta = fimConsulta;
     }
 }

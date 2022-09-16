@@ -10,20 +10,17 @@ import java.time.format.DateTimeFormatter;
 public class CriarConsultaDTO implements Serializable {
     private Long idPaciente;
     private Long idDentista;
-    private LocalDateTime inicioConsulta;
-    private LocalDateTime fimConsulta;
+    private String inicioConsulta;
+    private String fimConsulta;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    public CriarConsultaDTO(Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public CriarConsultaDTO(Long idPaciente, Long idDentista, String inicioConsulta, String fimConsulta) {
         this.idPaciente = idPaciente;
         this.idDentista = idDentista;
         this.inicioConsulta = inicioConsulta;
         this.fimConsulta = fimConsulta;
     }
 
-    public CriarConsultaDTO() {
-    }
+    public CriarConsultaDTO() {}
 
     public Long getIdPaciente() {
         return idPaciente;
@@ -41,19 +38,19 @@ public class CriarConsultaDTO implements Serializable {
         this.idDentista = idDentista;
     }
 
-    public LocalDateTime getInicioConsulta() {
+    public String getInicioConsulta() {
         return inicioConsulta;
     }
 
-    public void setInicioConsulta(LocalDateTime inicioConsulta) {
+    public void setInicioConsulta(String inicioConsulta) {
         this.inicioConsulta = inicioConsulta;
     }
 
-    public LocalDateTime getFimConsulta() {
+    public String getFimConsulta() {
         return fimConsulta;
     }
 
-    public void setFimConsulta(LocalDateTime fimConsulta) {
+    public void setFimConsulta(String fimConsulta) {
         this.fimConsulta = fimConsulta;
     }
 }
