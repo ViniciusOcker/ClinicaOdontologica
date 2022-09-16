@@ -45,7 +45,7 @@ public class DentistaService implements IService<DentistaDTO> {
     @Override
     public String delete(Long id) {
         dentistaRepository.delete(new DentistaEntity(id));
-        return "Dentista " + id + "foi deletado com sucesso!";
+        return "Dentista " + id + " foi deletado com sucesso!";
     }
 
     public DentistaDTO update(Long id, CriarDentistaDTO criarDentistaDTO) {
@@ -54,9 +54,9 @@ public class DentistaService implements IService<DentistaDTO> {
         return new DentistaDTO(dentistaRepository.saveAndFlush(dentista));
     }
 
-    public List<DentistaDTO> findDentista(String nomeCompleto){
+    public List<DentistaDTO> findDentista(String nome, String sobrenome){
         List<DentistaDTO> dentistaDTOList = new ArrayList<>();
-        for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nomeCompleto+"%")) {
+        for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%")) {
             dentistaDTOList.add(new DentistaDTO(dentista));
         }
         return dentistaDTOList;

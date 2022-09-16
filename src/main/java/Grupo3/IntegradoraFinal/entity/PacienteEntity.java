@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 @Entity
 @Table(name = "Paciente")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +22,18 @@ public class PacienteEntity {
     private EnderecoEntity endereco;
     @Column(nullable = false)
     private String rg;
-    private String dataDeAlta;
+    private LocalDateTime dataDeAlta;
+    @OneToMany(mappedBy = "idConsulta")
+    private Set<ConsultaEntity> consultas;
 
     public PacienteEntity(Long idPaciente, String nome, String sobrenome, EnderecoEntity endereco, String rg, String dataDeAlta) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.idPaciente = idPaciente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.rg = rg;
-        this.dataDeAlta = dataDeAlta;
+        this.dataDeAlta = (dataDeAlta == null) ? null : LocalDateTime.parse(dataDeAlta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public PacienteEntity() {
@@ -41,7 +44,7 @@ public class PacienteEntity {
         this.sobrenome = criarPacienteDTO.getSobrenome();
         this.endereco = new EnderecoEntity(id);
         this.rg = criarPacienteDTO.getRg();
-        this.dataDeAlta = criarPacienteDTO.getDataDeAlta();
+        this.dataDeAlta = (criarPacienteDTO.getDataDeAlta() == null) ? null : LocalDateTime.parse(criarPacienteDTO.getDataDeAlta(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public PacienteEntity(Long idPaciente) {
@@ -89,10 +92,18 @@ public class PacienteEntity {
     }
 
     public String getDataDeAlta() {
-        return dataDeAlta;
+        return (this.dataDeAlta == null) ? null : this.dataDeAlta.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public void setDataDeAlta(String dataDeAlta) {
-        this.dataDeAlta = dataDeAlta;
+        this.dataDeAlta = (dataDeAlta == null) ? null : LocalDateTime.parse(dataDeAlta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    }
+
+    public Set<ConsultaEntity> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<ConsultaEntity> consultas) {
+        this.consultas = consultas;
     }
 }

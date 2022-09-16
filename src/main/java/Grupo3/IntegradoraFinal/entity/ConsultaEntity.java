@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "consulta")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ConsultaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,17 +22,17 @@ public class ConsultaEntity {
     @JoinColumn(name="idDentista", nullable=false)
 
     private DentistaEntity dentista;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private LocalDateTime inicioConsulta;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private LocalDateTime fimConsulta;
 
-    public ConsultaEntity(Long idConsulta, PacienteEntity paciente, DentistaEntity dentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
+    public ConsultaEntity(Long idConsulta, PacienteEntity paciente, DentistaEntity dentista, String inicioConsulta, String fimConsulta) {
         this.idConsulta = idConsulta;
         this.paciente = paciente;
         this.dentista = dentista;
-        this.inicioConsulta = inicioConsulta;
-        this.fimConsulta = fimConsulta;
+        this.inicioConsulta = LocalDateTime.parse(inicioConsulta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        this.fimConsulta = LocalDateTime.parse(fimConsulta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public ConsultaEntity() {
@@ -45,8 +45,8 @@ public class ConsultaEntity {
     public ConsultaEntity(CriarConsultaDTO criarConsultaDTO) {
         this.paciente = new PacienteEntity(criarConsultaDTO.getIdPaciente());
         this.dentista = new DentistaEntity(criarConsultaDTO.getIdDentista());
-        this.inicioConsulta = criarConsultaDTO.getInicioConsulta();
-        this.fimConsulta = criarConsultaDTO.getFimConsulta();
+        this.inicioConsulta = LocalDateTime.parse(criarConsultaDTO.getInicioConsulta(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        this.fimConsulta = LocalDateTime.parse(criarConsultaDTO.getFimConsulta(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public Long getIdConsulta() {
@@ -73,19 +73,19 @@ public class ConsultaEntity {
         this.dentista = dentista;
     }
 
-    public LocalDateTime getInicioConsulta() {
-        return inicioConsulta;
+    public String getInicioConsulta() {
+        return this.inicioConsulta.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
-    public void setInicioConsulta(LocalDateTime inicioConsulta) {
-        this.inicioConsulta = inicioConsulta;
+    public void setInicioConsulta(String inicioConsulta) {
+        this.inicioConsulta = LocalDateTime.parse(inicioConsulta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
-    public LocalDateTime getFimConsulta() {
-        return fimConsulta;
+    public String getFimConsulta() {
+        return this.fimConsulta.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
-    public void setFimConsulta(LocalDateTime fimConsulta) {
-        this.fimConsulta = fimConsulta;
+    public void setFimConsulta(String fimConsulta) {
+        this.fimConsulta = LocalDateTime.parse(fimConsulta, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 }

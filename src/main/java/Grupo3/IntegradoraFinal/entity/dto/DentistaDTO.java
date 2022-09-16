@@ -1,7 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
 import Grupo3.IntegradoraFinal.entity.DentistaEntity;
-
 import java.io.Serializable;
 
 public class DentistaDTO implements Serializable {

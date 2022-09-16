@@ -1,9 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CriarPacienteDTO implements Serializable {
 

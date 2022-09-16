@@ -1,7 +1,6 @@
 package Grupo3.IntegradoraFinal.entity.dto;
 
 import Grupo3.IntegradoraFinal.entity.EnderecoEntity;
-
 import java.io.Serializable;
 
 public class EnderecoDTO implements Serializable {
