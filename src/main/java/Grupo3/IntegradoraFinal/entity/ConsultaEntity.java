@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "consulta")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ConsultaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

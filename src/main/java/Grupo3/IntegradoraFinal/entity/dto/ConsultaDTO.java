@@ -4,6 +4,7 @@ import Grupo3.IntegradoraFinal.entity.ConsultaEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ConsultaDTO implements Serializable {
     private Long idConsulta;
@@ -11,6 +12,7 @@ public class ConsultaDTO implements Serializable {
     private Long idDentista;
     private LocalDateTime inicioConsulta;
     private LocalDateTime fimConsulta;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public ConsultaDTO(Long idConsulta, Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
         this.idConsulta = idConsulta;

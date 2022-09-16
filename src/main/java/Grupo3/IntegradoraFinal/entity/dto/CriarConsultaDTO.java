@@ -5,12 +5,15 @@ import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CriarConsultaDTO implements Serializable {
     private Long idPaciente;
     private Long idDentista;
     private LocalDateTime inicioConsulta;
     private LocalDateTime fimConsulta;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public CriarConsultaDTO(Long idPaciente, Long idDentista, LocalDateTime inicioConsulta, LocalDateTime fimConsulta) {
         this.idPaciente = idPaciente;
