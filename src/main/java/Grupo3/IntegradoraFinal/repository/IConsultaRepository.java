@@ -12,4 +12,7 @@ import java.util.Optional;
 public interface IConsultaRepository extends JpaRepository<ConsultaEntity, Long> {
     @Query(value="SELECT * FROM consulta WHERE id_dentista LIKE ?1", nativeQuery=true)
     Optional<List<ConsultaEntity>> getByIdDentista(Long id);
+
+    @Query(value="SELECT * FROM consulta WHERE id_paciente LIKE ?1", nativeQuery=true)
+    Optional<List<ConsultaEntity>> getByIdPaciente(Long id);
 }

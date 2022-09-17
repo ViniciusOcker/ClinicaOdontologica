@@ -46,4 +46,9 @@ public class ConsultaController {
     public List<ConsultaDTO> getByIdDentista(@PathVariable Long id){
         return consultaService.getByIdDentista(id);
     }
+
+    @GetMapping("/paciente/{id}")
+    public List<ConsultaDTO> getByIdPaciente(@PathVariable Long id){
+        return consultaService.getByIdPaciente(id);
+    }
 }

@@ -53,4 +53,12 @@ public class ConsultaService implements IService<ConsultaDTO> {
         }
         return consultaList;
     }
+
+    public List<ConsultaDTO> getByIdPaciente(Long id) {
+        List<ConsultaDTO> consultaList = new ArrayList<>();
+        for (ConsultaEntity consulta : consultaRepository.getByIdPaciente(id).get()) {
+            consultaList.add(new ConsultaDTO(consulta));
+        }
+        return consultaList;
+    }
 }
