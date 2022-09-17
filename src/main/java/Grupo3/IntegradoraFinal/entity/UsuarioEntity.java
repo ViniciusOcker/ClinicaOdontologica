@@ -2,6 +2,9 @@ package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,8 +31,9 @@ public class UsuarioEntity {
     }
 
     public UsuarioEntity(CriarUsuarioDTO criarUsuarioDTO) {
+        PasswordEncoder passwordHash = new BCryptPasswordEncoder();
         this.nomeDeUsuario = criarUsuarioDTO.getNomeDeUsuario();
-        this.senha = criarUsuarioDTO.getSenha();
+        this.senha = passwordHash.encode(criarUsuarioDTO.getSenha());
         this.admin = criarUsuarioDTO.isAdmin();
         this.idUsuario = null;
     }
