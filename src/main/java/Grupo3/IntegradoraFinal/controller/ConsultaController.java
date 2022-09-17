@@ -41,4 +41,9 @@ public class ConsultaController {
     public ConsultaDTO update(@PathVariable Long id, @RequestBody CriarConsultaDTO criarConsultaDTO){
         return consultaService.update(id, criarConsultaDTO);
     }
+
+    @GetMapping("/dentista/{id}")
+    public List<ConsultaDTO> getByIdDentista(@PathVariable Long id){
+        return consultaService.getByIdDentista(id);
+    }
 }
