@@ -45,4 +45,20 @@ public class ConsultaService implements IService<ConsultaDTO> {
         consultaEntity.setIdConsulta(id);
         return new ConsultaDTO(consultaRepository.saveAndFlush(consultaEntity));
     }
+
+    public List<ConsultaDTO> getByIdDentista(Long id) {
+        List<ConsultaDTO> consultaList = new ArrayList<>();
+        for (ConsultaEntity consulta : consultaRepository.getByIdDentista(id).get()) {
+            consultaList.add(new ConsultaDTO(consulta));
+        }
+        return consultaList;
+    }
+
+    public List<ConsultaDTO> getByIdPaciente(Long id) {
+        List<ConsultaDTO> consultaList = new ArrayList<>();
+        for (ConsultaEntity consulta : consultaRepository.getByIdPaciente(id).get()) {
+            consultaList.add(new ConsultaDTO(consulta));
+        }
+        return consultaList;
+    }
 }

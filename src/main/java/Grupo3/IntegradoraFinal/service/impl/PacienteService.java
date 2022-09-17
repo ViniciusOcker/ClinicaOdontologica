@@ -59,7 +59,7 @@ public class PacienteService implements IService<PacienteDTO> {
 
     public List<PacienteDTO> findPaciente(String nome, String sobrenome){
         List<PacienteDTO> pacienteDTOList = new ArrayList<>();
-        for (PacienteEntity pacienteEntity:pacienteRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%")) {
+        for (PacienteEntity pacienteEntity:pacienteRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%").get()) {
             pacienteDTOList.add(new PacienteDTO(pacienteEntity));
         }
         return pacienteDTOList;

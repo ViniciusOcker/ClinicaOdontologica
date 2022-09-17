@@ -11,7 +11,7 @@ import java.util.Set;
 public class DentistaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idFuncionario")
+    @Column(name = "idDentista")
     private Long idDentista;
     @Column(nullable = false)
     private String nome;

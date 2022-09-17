@@ -56,7 +56,7 @@ public class DentistaService implements IService<DentistaDTO> {
 
     public List<DentistaDTO> findDentista(String nome, String sobrenome){
         List<DentistaDTO> dentistaDTOList = new ArrayList<>();
-        for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%")) {
+        for (DentistaEntity dentista:dentistaRepository.findNameFull("%"+nome+"%", "%"+sobrenome+"%").get()) {
             dentistaDTOList.add(new DentistaDTO(dentista));
         }
         return dentistaDTOList;
