@@ -4,6 +4,7 @@ import Grupo3.IntegradoraFinal.entity.dto.CriarDentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.DentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
+import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.service.impl.DentistaService;
 import Grupo3.IntegradoraFinal.service.impl.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,30 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id){
-        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
+    public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de usuario!");
+        }
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getByAll(){
-        return new ResponseEntity<>(usuarioService.getByAll(), HttpStatus.OK);
+    public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(usuarioService.getByAll(), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Usuario");
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        return new ResponseEntity<>(usuarioService.delete(id), HttpStatus.OK);
+    public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(usuarioService.delete(id), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de usuario");
+        }
     }
 
     @PutMapping("/{id}")
