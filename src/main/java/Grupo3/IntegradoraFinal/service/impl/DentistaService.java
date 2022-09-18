@@ -44,7 +44,7 @@ public class DentistaService implements IService<DentistaDTO> {
 
     @Override
     public String delete(Long id) {
-        dentistaRepository.delete(new DentistaEntity(id));
+        dentistaRepository.deleteById(id);
         return "Dentista " + id + " foi deletado com sucesso!";
     }
 
