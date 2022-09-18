@@ -2,6 +2,7 @@ package Grupo3.IntegradoraFinal.controller;
 
 import Grupo3.IntegradoraFinal.entity.dto.CriarPacienteDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,18 +24,30 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id){
-        return new ResponseEntity<>(pacienteService.getById(id), HttpStatus.OK);
+    public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(pacienteService.getById(id), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de paciente!");
+        }
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getByAll(){
-        return new ResponseEntity<>(pacienteService.getByAll(), HttpStatus.OK);
+    public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(pacienteService.getByAll(), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Paciente");
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        return new ResponseEntity<>(pacienteService.delete(id), HttpStatus.OK);
+    public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
+        try{
+            return new ResponseEntity<>(pacienteService.delete(id), HttpStatus.OK);
+        } catch(Exception e){
+            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de paciente");
+        }
     }
 
     @PutMapping("/{id}")
