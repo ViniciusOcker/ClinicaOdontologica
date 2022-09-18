@@ -67,7 +67,13 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarUsuarioDTO criarUsuarioDTO){
-        return new ResponseEntity<>(usuarioService.update(id, criarUsuarioDTO), HttpStatus.CREATED);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarUsuarioDTO criarUsuarioDTO) throws JsonProcessingException, BadRequestException {
+        UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
+        if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){
+            return new ResponseEntity<>(usuarioService.update(id, criarUsuarioDTO), HttpStatus.CREATED);
+        } else {
+            ObjectMapper objectMapper = new ObjectMapper();
+            throw new BadRequestException(objectMapper.writeValueAsString(error));
+        }
     }
 }
