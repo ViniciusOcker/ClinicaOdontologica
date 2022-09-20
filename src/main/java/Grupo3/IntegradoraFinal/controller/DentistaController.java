@@ -3,6 +3,7 @@ package Grupo3.IntegradoraFinal.controller;
 import Grupo3.IntegradoraFinal.entity.dto.CriarDentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.DentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+import Grupo3.IntegradoraFinal.exception.BadRequestException;
 import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.service.impl.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +21,31 @@ public class DentistaController {
     DentistaService dentistaService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody CriarDentistaDTO criarDentistaDTO){
+    public ResponseEntity<?> create(@RequestBody CriarDentistaDTO criarDentistaDTO) throws Exception {
         return new ResponseEntity<>(dentistaService.create(criarDentistaDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(dentistaService.getById(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de dentista!");
-        }
+        return new ResponseEntity<>(dentistaService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/")
     public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(dentistaService.getByAll(), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Dentistas");
-        }
+        return new ResponseEntity<>(dentistaService.getByAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(dentistaService.delete(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de dentista");
-        }
+        return new ResponseEntity<>(dentistaService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarDentistaDTO criarDentistaDTO){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarDentistaDTO criarDentistaDTO) throws Exception {
         return new ResponseEntity<>(dentistaService.update(id, criarDentistaDTO), HttpStatus.CREATED);
     }
     @GetMapping("/search")
-    public ResponseEntity<?> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome){
+    public ResponseEntity<?> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome) throws BadRequestException {
         return new ResponseEntity<>(dentistaService.findDentista(nome, sobrenome), HttpStatus.OK);
     }
 }
