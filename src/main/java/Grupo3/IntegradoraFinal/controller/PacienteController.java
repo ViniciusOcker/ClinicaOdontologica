@@ -2,6 +2,7 @@ package Grupo3.IntegradoraFinal.controller;
 
 import Grupo3.IntegradoraFinal.entity.dto.CriarPacienteDTO;
 import Grupo3.IntegradoraFinal.entity.dto.PacienteDTO;
+import Grupo3.IntegradoraFinal.exception.BadRequestException;
 import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class PacienteController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome){
+    public ResponseEntity<?> buscarPeloNomeCompleto(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false, defaultValue = "") String sobrenome) throws Exception {
         return new ResponseEntity<>(pacienteService.findPaciente(nome, sobrenome), HttpStatus.OK);
     }
 }
