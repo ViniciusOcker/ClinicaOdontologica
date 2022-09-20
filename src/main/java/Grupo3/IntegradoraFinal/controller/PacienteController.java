@@ -24,30 +24,18 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(pacienteService.getById(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de paciente!");
-        }
+    public ResponseEntity<?> getById(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(pacienteService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(pacienteService.getByAll(), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Paciente");
-        }
+    public ResponseEntity<?> getByAll() throws Exception {
+        return new ResponseEntity<>(pacienteService.getByAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(pacienteService.delete(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de paciente");
-        }
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(pacienteService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
