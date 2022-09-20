@@ -2,6 +2,7 @@ package Grupo3.IntegradoraFinal.service.impl;
 
 import Grupo3.IntegradoraFinal.entity.PacienteEntity;
 import Grupo3.IntegradoraFinal.entity.dto.*;
+import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
 import Grupo3.IntegradoraFinal.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +20,7 @@ public class PacienteService implements IService<PacienteDTO> {
     @Autowired
     private EnderecoService enderecoService;
 
-    public PacienteDTO create(CriarPacienteDTO criarPacienteDTO) {
+    public PacienteDTO create(CriarPacienteDTO criarPacienteDTO) throws Exception {
         EnderecoDTO enderecoDTO = enderecoService.create(criarPacienteDTO.getEndereco());
         PacienteDTO pacienteDTO = new PacienteDTO(pacienteRepository.saveAndFlush(new PacienteEntity(criarPacienteDTO, enderecoDTO.getIdEndereco())));
         pacienteDTO.setEndereco(enderecoDTO);
@@ -41,7 +42,7 @@ public class PacienteService implements IService<PacienteDTO> {
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(Long id) throws ResourceNotFoundException {
         PacienteEntity paciente = pacienteRepository.findById(id).get();
         Long idEndereco = paciente.getEndereco().getIdEndereco();
         pacienteRepository.deleteById(id);
@@ -49,7 +50,7 @@ public class PacienteService implements IService<PacienteDTO> {
         return "O paciente " + id + " foi deletado com sucesso!";
     }
 
-    public PacienteDTO update(Long id, CriarPacienteDTO criarPacienteDTO) {
+    public PacienteDTO update(Long id, CriarPacienteDTO criarPacienteDTO) throws Exception {
         PacienteEntity pacienteEntity = pacienteRepository.findById(id).get();
         EnderecoDTO enderecoDTO = enderecoService.update(pacienteEntity.getEndereco().getIdEndereco(),criarPacienteDTO.getEndereco());
         PacienteEntity pacienteEntity2 = new PacienteEntity(criarPacienteDTO, enderecoDTO.getIdEndereco());

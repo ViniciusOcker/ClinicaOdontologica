@@ -19,7 +19,7 @@ public class PacienteController {
     PacienteService pacienteService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody CriarPacienteDTO criarPacienteDTO){
+    public ResponseEntity<?> create(@RequestBody CriarPacienteDTO criarPacienteDTO) throws Exception {
         return new ResponseEntity<>(pacienteService.create(criarPacienteDTO), HttpStatus.CREATED);
     }
 
@@ -51,7 +51,7 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarPacienteDTO criarPacienteDTO){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarPacienteDTO criarPacienteDTO) throws Exception {
         return new ResponseEntity<>(pacienteService.update(id, criarPacienteDTO), HttpStatus.CREATED);
     }
 
