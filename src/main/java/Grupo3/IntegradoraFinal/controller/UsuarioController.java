@@ -25,55 +25,29 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
-    @Autowired
-    UsuarioValidation validation;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody CriarUsuarioDTO criarUsuarioDTO) throws JsonProcessingException, BadRequestException {
-        UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
-        if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){
-            return new ResponseEntity<>(usuarioService.create(criarUsuarioDTO), HttpStatus.CREATED);
-        } else {
-            ObjectMapper objectMapper = new ObjectMapper();
-            throw new BadRequestException(objectMapper.writeValueAsString(error));
-        }
+    public ResponseEntity<?> create(@RequestBody CriarUsuarioDTO criarUsuarioDTO) throws Exception {
+        return new ResponseEntity<>(usuarioService.create(criarUsuarioDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de usuario!");
-        }
+        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/")
     public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(usuarioService.getByAll(), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Usuario");
-        }
+        return new ResponseEntity<>(usuarioService.getByAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(usuarioService.delete(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de usuario");
-        }
+        return new ResponseEntity<>(usuarioService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarUsuarioDTO criarUsuarioDTO) throws JsonProcessingException, BadRequestException {
-        UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
-        if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){
-            return new ResponseEntity<>(usuarioService.update(id, criarUsuarioDTO), HttpStatus.CREATED);
-        } else {
-            ObjectMapper objectMapper = new ObjectMapper();
-            throw new BadRequestException(objectMapper.writeValueAsString(error));
-        }
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarUsuarioDTO criarUsuarioDTO) throws Exception {
+        return new ResponseEntity<>(usuarioService.update(id, criarUsuarioDTO), HttpStatus.CREATED);
     }
 }

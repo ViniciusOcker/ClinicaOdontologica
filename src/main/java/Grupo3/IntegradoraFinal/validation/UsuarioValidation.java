@@ -50,10 +50,9 @@ public class UsuarioValidation {
         return null;
     }
 
-     boolean Evalido(String texto, String regexp){
+     public boolean Evalido(String texto, String regexp){
         Pattern pattern = Pattern.compile(regexp, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(texto);
         return matcher.find();
     }
-    
 }
