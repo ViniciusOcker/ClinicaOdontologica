@@ -17,9 +17,20 @@ public class EnderecoValidation {
     }
     
     public EnderecoErrorDTO validation(CriarEnderecoDTO criarEnderecoDTO){
-        return new EnderecoErrorDTO(validationText(criarEnderecoDTO.getComplemento()), validationText(criarEnderecoDTO.getRua()), null, validationText(criarEnderecoDTO.getBairro()), validationText(criarEnderecoDTO.getCidade()), validationText(criarEnderecoDTO.getEstado()), validationText(criarEnderecoDTO.getPontoDeReferencia()));
+        return new EnderecoErrorDTO(validationText(criarEnderecoDTO.getComplemento()), validationText(criarEnderecoDTO.getRua()), validationNumero(criarEnderecoDTO.getNumero()), validationText(criarEnderecoDTO.getBairro()), validationText(criarEnderecoDTO.getCidade()), validationText(criarEnderecoDTO.getEstado()), validationText(criarEnderecoDTO.getPontoDeReferencia()));
     }
 
+    public String validationNumero(String numero){
+        if (numero.trim().isBlank()){
+            return "Este atribuito não pode ser vazio";
+        } else if (!Evalido(numero, "^[0-9]{1,}[A-Z]{0,1}$")) {
+            if(!numero.equals("SN")){
+                return "O formato do número é invalido";
+            }
+        }
+        return null;
+    }
+    
     public String validationText(String texto){
         if (texto.trim().isBlank()){
             return "Este atribuito não pode ser vazio";
