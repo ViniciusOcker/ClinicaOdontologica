@@ -8,7 +8,6 @@ import Grupo3.IntegradoraFinal.repository.IDentistaRepository;
 import Grupo3.IntegradoraFinal.repository.IPacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -77,5 +76,4 @@ public class ConsultaValidation {
         Matcher matcher = pattern.matcher(texto);
         return matcher.find();
     }
-
 }
