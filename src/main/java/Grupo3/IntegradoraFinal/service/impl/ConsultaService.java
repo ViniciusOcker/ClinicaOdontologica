@@ -36,8 +36,8 @@ public class ConsultaService implements IService<ConsultaDTO> {
 
     @Override
     public String delete(Long id) {
-        consultaRepository.delete(new ConsultaEntity(id));
-        return "A consulta " + id + " foi deletada comsucesso!";
+        consultaRepository.deleteById(id);
+        return "A consulta " + id + " foi deletada com sucesso!";
     }
 
     public ConsultaDTO update(Long id, CriarConsultaDTO criarConsultaDTO) {
