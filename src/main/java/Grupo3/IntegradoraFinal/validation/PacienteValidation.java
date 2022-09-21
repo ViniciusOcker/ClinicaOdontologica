@@ -14,8 +14,8 @@ public class PacienteValidation {
     private static final String nomeSobrenomeRegexp = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ ]{1,}$";
     private static final String croRegexp = "^[0-9]{1,}\\/[A-Z]{2}$";
     private static final String rgRegexp = "^[0-9]{1,}\\/[A-Za-z]{1,}\\/[A-Z]{2}$";
-    private static final String dataRegexp = "^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}$";
 
+    private static final String dataRegexp = "^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}$";
     public PacienteValidation() {
     }
     
