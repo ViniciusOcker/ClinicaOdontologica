@@ -65,9 +65,9 @@ public class EnderecoService  {
         ObjectMapper objectMapper = new ObjectMapper();
         EnderecoErrorDTO error = validation.validation(criarEnderecoDTO);
         if(error.getBairro() == null && error.getCidade() == null && error.getComplemento() == null && error.getEstado() == null && error.getNumero() == null && error.getPontoDeReferencia() == null && error.getRua() == null){
-            EnderecoEntity enderecoEntity = new EnderecoEntity(criarEnderecoDTO);
-            enderecoEntity.setIdEndereco(id);
             try{
+                EnderecoEntity enderecoEntity = new EnderecoEntity(criarEnderecoDTO);
+                enderecoEntity.setIdEndereco(id);
                 return new EnderecoDTO(enderecoRepository.saveAndFlush(enderecoEntity));
             }
             catch (Exception e){

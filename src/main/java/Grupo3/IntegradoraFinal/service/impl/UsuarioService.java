@@ -83,9 +83,9 @@ public class UsuarioService implements IService<UsuarioDTO>, UserDetailsService 
         ObjectMapper objectMapper = new ObjectMapper();
         UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
         if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){
-            UsuarioEntity usuario = new UsuarioEntity(criarUsuarioDTO);
-            usuario.setIdUsuario(id);
             try{
+                UsuarioEntity usuario = new UsuarioEntity(criarUsuarioDTO);
+                usuario.setIdUsuario(id);
                 usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
                 return new UsuarioDTO(usuarioRepository.saveAndFlush(usuario));
             }

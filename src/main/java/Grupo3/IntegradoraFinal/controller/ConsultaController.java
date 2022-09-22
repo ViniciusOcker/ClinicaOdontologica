@@ -21,57 +21,37 @@ public class ConsultaController {
     ConsultaService consultaService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody CriarConsultaDTO criarConsultaDTO){
+    public ResponseEntity<?> create(@RequestBody CriarConsultaDTO criarConsultaDTO) throws Exception{
         return new ResponseEntity<>(consultaService.create(criarConsultaDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(consultaService.getById(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de consulta!");
-        }
+    public ResponseEntity<?> getById(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(consultaService.getById(id), HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getByAll() throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(consultaService.getByAll(), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de Consulta");
-        }
+    public ResponseEntity<?> getByAll() throws Exception {
+        return new ResponseEntity<>(consultaService.getByAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(consultaService.delete(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel deletar o id " + id + " de consulta");
-        }
+    public ResponseEntity<?> delete(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(consultaService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarConsultaDTO criarConsultaDTO){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CriarConsultaDTO criarConsultaDTO) throws Exception{
         return new ResponseEntity<>(consultaService.update(id, criarConsultaDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/dentista/{id}")
-    public ResponseEntity<?> getByIdDentista(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(consultaService.getByIdDentista(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de consultas o id de Dentista " + id );
-        }
+    public ResponseEntity<?> getByIdDentista(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(consultaService.getByIdDentista(id), HttpStatus.OK);
     }
 
     @GetMapping("/paciente/{id}")
-    public ResponseEntity<?> getByIdPaciente(@PathVariable Long id) throws ResourceNotFoundException {
-        try{
-            return new ResponseEntity<>(consultaService.getByIdPaciente(id), HttpStatus.OK);
-        } catch(Exception e){
-            throw new ResourceNotFoundException("Não foi possivel obter uma lista de consultas o id de Paciente " + id );
-        }
+    public ResponseEntity<?> getByIdPaciente(@PathVariable Long id) throws Exception {
+        return new ResponseEntity<>(consultaService.getByIdPaciente(id), HttpStatus.OK);
     }
 }
