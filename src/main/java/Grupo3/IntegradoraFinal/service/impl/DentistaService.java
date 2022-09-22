@@ -44,7 +44,7 @@ public class DentistaService implements IService<DentistaDTO> {
 
     @Override
     public DentistaDTO getById(Long id) throws ResourceNotFoundException {
-        return new DentistaDTO(dentistaRepository.findById(id).orElseThrow(()->{return new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de dentista!");}));
+        return new DentistaDTO(dentistaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Não foi possivel localizar o id " + id + " de dentista!")));
     }
 
     @Override
@@ -73,9 +73,9 @@ public class DentistaService implements IService<DentistaDTO> {
         ObjectMapper objectMapper = new ObjectMapper();
         DentistaErrorDTO error = validation.validation(criarDentistaDTO);
         if (error.getNome() == null && error.getSobrenome() == null && error.getCro() == null){
-            DentistaEntity dentista = new DentistaEntity(criarDentistaDTO);
-            dentista.setIdDentista(id);
             try{
+                DentistaEntity dentista = new DentistaEntity(criarDentistaDTO);
+                dentista.setIdDentista(id);
                 return new DentistaDTO(dentistaRepository.saveAndFlush(dentista));
             }
             catch (Exception e){
