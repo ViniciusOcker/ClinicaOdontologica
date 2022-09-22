@@ -14,23 +14,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UsuarioService implements IService<UsuarioDTO> {
+public class UsuarioService implements IService<UsuarioDTO>, UserDetailsService {
     @Autowired
     IUsuarioRepository usuarioRepository;
 
     @Autowired
     UsuarioValidation validation;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
         if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){
             try{
+                criarUsuarioDTO.setSenha(bCryptPasswordEncoder.encode(criarUsuarioDTO.getSenha()));
                 return new UsuarioDTO(usuarioRepository.saveAndFlush(new UsuarioEntity(criarUsuarioDTO)));
             }
             catch (Exception e){
@@ -78,6 +86,7 @@ public class UsuarioService implements IService<UsuarioDTO> {
             UsuarioEntity usuario = new UsuarioEntity(criarUsuarioDTO);
             usuario.setIdUsuario(id);
             try{
+                usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
                 return new UsuarioDTO(usuarioRepository.saveAndFlush(usuario));
             }
             catch (Exception e){
@@ -87,5 +96,10 @@ public class UsuarioService implements IService<UsuarioDTO> {
         } else {
             throw new BadRequestException(objectMapper.writeValueAsString(error));
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return usuarioRepository.findByNomeDeUsuario(username).orElseThrow(()->new UsernameNotFoundException("O nome de usuário não encontrado!"));
     }
 }
