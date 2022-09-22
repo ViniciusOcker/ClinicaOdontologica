@@ -1,0 +1,620 @@
+{
+	"info": {
+		"_postman_id": "879c59aa-9247-4ba8-9d63-574059fb4166",
+		"name": "tudo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20353447"
+	},
+	"item": [
+		{
+			"name": "Consulta",
+			"item": [
+				{
+					"name": "criar uma consulta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 3,\n    \"idDentista\": 2,\n    \"inicioConsulta\": \"14/09/2020 15:10:00\",\n    \"fimConsulta\": \"14/09/2020 15:30:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/consulta/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar todas as consulta",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "batATA2020@",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "batata",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista uma consulta apartir um id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista todas  consultas apartir um id de dentista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/paciente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir um id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar uma consulta apatir de um id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 1,\n    \"idDentista\": 1,\n    \"inicioConsulta\": \"14/09/2020 15:30:00\",\n    \"fimConsulta\": \"14/09/2020 14:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/consulta/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dentista",
+			"item": [
+				{
+					"name": "Criar um novo dentista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"lucas\",\n    \"sobrenome\": \"ocker\",\n    \"cro\": \"5889/RC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentista/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista todos os dentistas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "batata",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "batATA2020@",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentista/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista dentista com id especifico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentista/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir um dentista apartir do id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentista/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar os dados de um dentista",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"joão\",\n    \"sobrenome\": \"pinheiro\",\n    \"cro\": \"1234/RC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentista/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por nome completo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentista/search?sobrenome=ocker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentista",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sobrenome",
+									"value": "ocker"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "Criar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeDeUsuario\": \"batata\",\n    \"senha\": \"batATA2020@\",\n    \"admin\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista todos usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista um id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir um id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificar um id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeDeUsuario\": \"batata\",\n    \"senha\": \"batATA2020@\",\n    \"admin\": true\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "Criar um novo paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"lucas\",\n    \"sobrenome\": \"pinheiro\",\n    \"endereco\": {\n        \"complemento\": \"Fundos 3\",\n        \"rua\": \"Rua das batatas\",\n        \"numero\": \"89\",\n        \"bairro\": \"Batatas\",\n        \"cidade\": \"Batatismo\",\n        \"estado\": \"Batata crua\",\n        \"pontoDeReferencia\": \"Ao lado do Lanchonenete de batatas\"\n    },\n    \"rg\": \"48458784/SSP/RG\",\n    \"dataDeAlta\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter a lista completa de pacientes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "batata",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "batATA2020@",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paciente/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retonar o id especifico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paciente/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir um id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paciente/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificar os dados do paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"batata\",\n    \"sobrenome\": \"do batatismo\",\n    \"endereco\": {\n        \"complemento\": \"Fundos 3\",\n        \"rua\": \"Rua das batatas\",\n        \"numero\": \"89\",\n        \"bairro\": \"Batatas\",\n        \"cidade\": \"Batatismo\",\n        \"estado\": \"Batata crua\",\n        \"pontoDeReferencia\": \"Ao lado do Lanchonenete de batatas\"\n    },\n    \"rg\": \"48458784/SSP/RG\",\n    \"dataDeAlta\": \"14/09/2020 15:05:05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por nome completo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paciente/search?sobrenome=o",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sobrenome",
+									"value": "o"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
