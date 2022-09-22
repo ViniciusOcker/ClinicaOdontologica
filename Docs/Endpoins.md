@@ -2,6 +2,20 @@
 
 ## Não precisar de autenticação:
 
+#### Criação do primeiro usuário do sistema
+Ao registrar um usuário, a endpoint bloquear e registrar sempre como administrador.
+
+```http
+  POST /usuario/create/first
+```
+| Parâmetro(JSON) | Tipo       | Descrição                                                  |
+| :---------------| :--------- | :----------------------------------------------------------|
+| `nomeDeUsuario` | `string`   | **Obrigatório**. O nome de usuário da conta               |
+| `senha`         | `string`   | **Obrigatório**. A senha da conta                         |
+| `admin`         | `boolean`  | **Obrigatório**. Se conta vai ter funções administrativas |
+
+## Precisar está logado e o nível de permissão é de usuário
+
 #### Criar um novo usuário
 ```http
   POST /usuario/create
@@ -11,8 +25,6 @@
 | `nomeDeUsuario` | `string`   | **Obrigatório**. O nome de usuário da conta               |
 | `senha`         | `string`   | **Obrigatório**. A senha da conta                         |
 | `admin`         | `boolean`  | **Obrigatório**. Se conta vai ter funções administrativas |
-
-## Precisar está logado e o nível de permissão é de usuário
 
 #### Criar um nova consulta
 O paciente e dentista dever existir antes de pode criar uma nova consulta
