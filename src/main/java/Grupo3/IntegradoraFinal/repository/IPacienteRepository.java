@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public interface IPacienteRepository extends JpaRepository<PacienteEntity, Long> {
 
     @Query(value="SELECT * FROM Paciente WHERE nome LIKE ?1 AND sobrenome LIKE ?2", nativeQuery=true)
-    List<PacienteEntity> findNameFull(String nome, String sobrenome);
+    Optional<List<PacienteEntity>> findNameFull(String nome, String sobrenome);
 }

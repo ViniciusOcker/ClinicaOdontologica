@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IDentistaRepository extends JpaRepository<DentistaEntity, Long> {
     @Query(value="SELECT * FROM Dentista WHERE nome LIKE ?1 AND sobrenome LIKE ?2", nativeQuery=true)
-    List<DentistaEntity> findNameFull(String nome, String sobrenome);
+    Optional<List<DentistaEntity>> findNameFull(String nome, String sobrenome);
 }

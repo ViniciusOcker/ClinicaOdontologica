@@ -1,12 +1,20 @@
 package Grupo3.IntegradoraFinal.entity;
 
 import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name ="Usuario")
-public class UsuarioEntity {
+public class UsuarioEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
@@ -15,13 +23,15 @@ public class UsuarioEntity {
     private String nomeDeUsuario;
     @Column(nullable = false)
     private String senha;
-    private Boolean admin;
 
-    public UsuarioEntity(Long idUsuario, String nomeDeUsuario, String senha, Boolean admin) {
+    @Enumerated(EnumType.STRING)
+    private UsuarioRoles roles;
+
+    public UsuarioEntity(Long idUsuario, String nomeDeUsuario, String senha, UsuarioRoles roles) {
         this.idUsuario = idUsuario;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
-        this.admin = admin;
+        this.roles = roles;
     }
 
     public UsuarioEntity() {
@@ -30,12 +40,13 @@ public class UsuarioEntity {
     public UsuarioEntity(CriarUsuarioDTO criarUsuarioDTO) {
         this.nomeDeUsuario = criarUsuarioDTO.getNomeDeUsuario();
         this.senha = criarUsuarioDTO.getSenha();
-        this.admin = criarUsuarioDTO.isAdmin();
+        if(criarUsuarioDTO.isAdmin()) {
+            this.roles = UsuarioRoles.ROLE_ADMIN;
+        }
+        else{
+            this.roles = UsuarioRoles.ROLE_USER;
+        }
         this.idUsuario = null;
-    }
-
-    public UsuarioEntity(Long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public Long getIdUsuario() {
@@ -62,11 +73,47 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public UsuarioRoles getRoles() {
+        return roles;
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public void setRoles(UsuarioRoles roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.name());
+        return Collections.singleton(grantedAuthority);
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.nomeDeUsuario;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

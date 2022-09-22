@@ -35,7 +35,7 @@ Esse Sistema será criado com o uso de Java, SpringBoot e com Banco de Dados.
 
 ## 🛠️ Técnicas e Tecnologias 
 
-- ``Java 8``
+- ``Java 17``
 - ``InteliJ IDEA``
 - ``Paradigma de Orientação a Objetos``
 
