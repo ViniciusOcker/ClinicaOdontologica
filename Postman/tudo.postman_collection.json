@@ -94,7 +94,7 @@
 					"response": []
 				},
 				{
-					"name": "lista todas  consultas apartir um id de dentista",
+					"name": "lista todas  consultas apartir um id de paciente",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -108,6 +108,27 @@
 							"path": [
 								"consulta",
 								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista todas  consultas apartir um id de dentista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/dentista/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"dentista",
 								"1"
 							]
 						}
