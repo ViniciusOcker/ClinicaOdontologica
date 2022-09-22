@@ -5,6 +5,7 @@ import Grupo3.IntegradoraFinal.entity.dto.CriarUsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.UsuarioDTO;
 import Grupo3.IntegradoraFinal.entity.dto.error.UsuarioErrorDTO;
 import Grupo3.IntegradoraFinal.exception.BadRequestException;
+import Grupo3.IntegradoraFinal.exception.ForbiddenException;
 import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.repository.IUsuarioRepository;
 import Grupo3.IntegradoraFinal.service.IService;
@@ -33,7 +34,13 @@ public class UsuarioService implements IService<UsuarioDTO>, UserDetailsService 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO) throws Exception {
+    public UsuarioDTO create(CriarUsuarioDTO criarUsuarioDTO, Boolean first) throws Exception {
+        if(first){
+            criarUsuarioDTO.setAdmin(Boolean.TRUE);
+            if(usuarioRepository.count() != 0){
+                throw new ForbiddenException("Acesso negado!");
+            }
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         UsuarioErrorDTO error = validation.validation(criarUsuarioDTO);
         if (error.getNomeUsuario() == null && error.getSenha() == null && error.getRole() == null){

@@ -28,7 +28,12 @@ public class UsuarioController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody CriarUsuarioDTO criarUsuarioDTO) throws Exception {
-        return new ResponseEntity<>(usuarioService.create(criarUsuarioDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(usuarioService.create(criarUsuarioDTO, false), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/create/first")
+    public ResponseEntity<?> createFirst(@RequestBody CriarUsuarioDTO criarUsuarioDTO) throws Exception {
+        return new ResponseEntity<>(usuarioService.create(criarUsuarioDTO, true), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
