@@ -1,4 +1,4 @@
-package Grupo3.IntegradoraFinal.serviceTest;
+/*package Grupo3.IntegradoraFinal.serviceTest;
 
 
 import Grupo3.IntegradoraFinal.service.impl.ConsultaService;
@@ -26,4 +26,4 @@ public class getByIdDentistaImplTest {
         assertEquals("123", dentistaServiceImpl.findDentista("Paulo", "Santos"));
         assertEquals("123", String.valueOf(dentistaServiceImpl.getById(1L)));
     }
-}
+}*/
