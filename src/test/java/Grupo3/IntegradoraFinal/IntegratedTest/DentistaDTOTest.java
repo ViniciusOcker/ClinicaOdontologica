@@ -22,8 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.asJsonString;
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.objectFromString;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 
@@ -64,5 +64,36 @@ public class DentistaDTOTest {
         dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
 
         assertNotNull(dentistaDTO.getIdDentista());
+    }
+    @Test
+    @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
+    public void getById() throws Exception {
+        DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Jesse");
+        dentistaDTO.setSobrenome("Pinkman");
+        dentistaDTO.setCro("2345215187/RJ");
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/{id}", dentistaDTO.getIdDentista())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        responseBody = mvcResult.getResponse().getContentAsString();
+
+        DentistaDTO dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
+
+        assertEquals(dentistaDTO.getIdDentista(), dentistaDTO1.getIdDentista());
+        assertEquals(dentistaDTO.getNome(), dentistaDTO1.getNome());
     }
 }
