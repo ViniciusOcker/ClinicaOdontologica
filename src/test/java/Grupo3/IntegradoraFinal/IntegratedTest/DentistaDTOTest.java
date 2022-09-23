@@ -20,6 +20,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.asJsonString;
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.objectFromString;
 import static org.junit.jupiter.api.Assertions.*;
@@ -95,5 +98,60 @@ public class DentistaDTOTest {
 
         assertEquals(dentistaDTO.getIdDentista(), dentistaDTO1.getIdDentista());
         assertEquals(dentistaDTO.getNome(), dentistaDTO1.getNome());
+    }
+
+    @Test
+    @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
+    public void getAll() throws Exception {
+        DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Jesse");
+        dentistaDTO.setSobrenome("Pinkman");
+        dentistaDTO.setCro("2345215187/RJ");
+
+        DentistaDTO dentistaDTO2 = new DentistaDTO();
+        dentistaDTO2.setNome("Skyler");
+        dentistaDTO2.setSobrenome("White");
+        dentistaDTO2.setCro("2345685187/RJ");
+
+        List<DentistaDTO> dentistaDTOList = new ArrayList<>();
+        dentistaDTOList.add(dentistaDTO);
+        dentistaDTOList.add(dentistaDTO2);
+
+
+//        Cria o primero dentistaDTO
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+//          Cria o segundo dentistaDTO
+         mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO2)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+         responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/", dentistaDTOList)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        responseBody = mvcResult.getResponse().getContentAsString();
+
+         dentistaDTOList = objectFromString(dentistaDTOList.getClass(), responseBody);
+
+        assertNotNull(dentistaDTOList);
+
     }
 }
