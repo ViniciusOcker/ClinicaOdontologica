@@ -22,4 +22,12 @@ public class DentistaDTOUtils {
             throw new RuntimeException();
         }
     }
+
+    public static <T> T objectFromString1(Class<T> aClass, String value) {
+        try{
+            return objectMapper.readValue(value, aClass);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+    }
 }

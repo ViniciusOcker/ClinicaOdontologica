@@ -74,13 +74,15 @@ public class DentistaDTOTest {
         DentistaDTO dentistaDTO = new DentistaDTO();
         dentistaDTO.setNome("Jesse");
         dentistaDTO.setSobrenome("Pinkman");
-        dentistaDTO.setCro("2345215187/RJ");
+        dentistaDTO.setCro("1548215187/RJ");
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
-                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dentistaDTO)))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
 
         String responseBody = mvcResult.getResponse().getContentAsString();
 
@@ -104,8 +106,8 @@ public class DentistaDTOTest {
     @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
     public void getAll() throws Exception {
         DentistaDTO dentistaDTO = new DentistaDTO();
-        dentistaDTO.setNome("Jesse");
-        dentistaDTO.setSobrenome("Pinkman");
+        dentistaDTO.setNome("James");
+        dentistaDTO.setSobrenome("Halpert");
         dentistaDTO.setCro("2345215187/RJ");
 
         DentistaDTO dentistaDTO2 = new DentistaDTO();
@@ -140,6 +142,7 @@ public class DentistaDTOTest {
 
         dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
 
+//      Busca na lista
 
         mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/", dentistaDTOList)
                         .accept(MediaType.APPLICATION_JSON))
@@ -154,4 +157,34 @@ public class DentistaDTOTest {
         assertNotNull(dentistaDTOList);
 
     }
+    @Test
+    @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
+    public void deleteDenstista() throws Exception {
+        DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Pamella");
+        dentistaDTO.setSobrenome("Halpert");
+        dentistaDTO.setCro("12554897/PA");
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete("/dentista/{id}", dentistaDTO.getIdDentista())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON).content(asJsonString(dentistaDTO.getIdDentista())))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        String responseBody2 = mvcResult.getResponse().getContentAsString();
+        DentistaDTO dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
+
+        assertEquals(responseBody2, "Dentista " + dentistaDTO1.getIdDentista() + " foi deletado com sucesso!");
+    }
+
+
 }
