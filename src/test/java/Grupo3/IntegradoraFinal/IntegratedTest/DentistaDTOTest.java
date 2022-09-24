@@ -186,5 +186,35 @@ public class DentistaDTOTest {
         assertEquals(responseBody2, "Dentista " + dentistaDTO1.getIdDentista() + " foi deletado com sucesso!");
     }
 
+    @Test
+    @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
+    public void updateDentista() throws Exception{
+        DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Monkey");
+        dentistaDTO.setSobrenome("Luffy");
+        dentistaDTO.setCro("12566697/PA");
 
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        dentistaDTO.setCro("123456789/AM");
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.put("/dentista/{id}", dentistaDTO.getIdDentista())
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+       // String responseBody2 = mvcResult.getResponse().getContentAsString();
+        DentistaDTO dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
+
+        assertNotEquals(dentistaDTO1.getCro(), dentistaDTO.getCro());
+    }
 }
