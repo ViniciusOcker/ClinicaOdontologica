@@ -36,7 +36,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @RunWith(SpringRunner.class)
 public class DentistaDTOTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -239,11 +238,13 @@ public class DentistaDTOTest {
 
         dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
 
-        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/search", dentistaDTO.getNome())
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/search?nome=x&&sobrenome=y", dentistaDTO.getNome())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dentistaDTO)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
+
+
     }
 }
