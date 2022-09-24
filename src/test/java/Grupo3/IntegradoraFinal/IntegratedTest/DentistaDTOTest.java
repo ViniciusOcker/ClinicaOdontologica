@@ -22,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.asJsonString;
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.objectFromString;
@@ -216,5 +217,33 @@ public class DentistaDTOTest {
         DentistaDTO dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
 
         assertNotEquals(dentistaDTO1.getCro(), dentistaDTO.getCro());
+    }
+    @Test
+    @WithMockUser(username = "batata", password = "batata", roles = "ADMIN")
+    public void buscaPorNome() throws Exception{
+        DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Monkey");
+        dentistaDTO.setSobrenome("Luffy");
+        dentistaDTO.setCro("12566697/PA");
+
+        List<DentistaDTO> dentistaDTOList = new ArrayList<>();
+        dentistaDTOList.add(dentistaDTO);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/create")
+                        .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/search", dentistaDTO.getNome())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
     }
 }
