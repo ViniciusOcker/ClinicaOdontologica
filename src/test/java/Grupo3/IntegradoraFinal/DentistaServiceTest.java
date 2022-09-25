@@ -3,6 +3,7 @@
 import Grupo3.IntegradoraFinal.entity.DentistaEntity;
 import Grupo3.IntegradoraFinal.entity.dto.CriarDentistaDTO;
 import Grupo3.IntegradoraFinal.entity.dto.DentistaDTO;
+import Grupo3.IntegradoraFinal.exception.ResourceNotFoundException;
 import Grupo3.IntegradoraFinal.repository.IDentistaRepository;
 import Grupo3.IntegradoraFinal.service.impl.DentistaService;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ public class DentistaServiceTest {
     CriarDentistaDTO criarDentistaDTO = new CriarDentistaDTO("Jesse","Pinkman", "33");
     DentistaEntity dentista = new DentistaEntity(1L);
     @Test
-    public void criarDentista(){
+    public void criarDentista() throws Exception {
         DentistaDTO dto = dentistaService.create(criarDentistaDTO);
         assertEquals("Jesse",criarDentistaDTO.getNome());
         assertEquals("Pinkman",criarDentistaDTO.getSobrenome());
@@ -44,21 +45,21 @@ public class DentistaServiceTest {
     }
 
     @Test
-    public void deleteDentista(){
+    public void deleteDentista() throws ResourceNotFoundException {
      dentistaService.delete(1L);
         Optional<DentistaEntity> optionalDentistaEntity = dentistaRepository.findById(1L);
         assertFalse(optionalDentistaEntity.isPresent());
     }
 
     @Test
-    public void getByAllTest(){
+    public void getByAllTest() throws ResourceNotFoundException {
         dentistaService.getByAll();
         List<DentistaDTO> dentistaDTOList = new ArrayList<>();
         assertTrue(dentistaDTOList != null);
     }
 
     @Test
-    public void updateTest(){
+    public void updateTest() throws Exception {
         criarDentistaDTO.setCro("100");
         dentistaService.update(1L,criarDentistaDTO);
         assertEquals("100", criarDentistaDTO.getCro());
