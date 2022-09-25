@@ -213,6 +213,8 @@ Buscando o dentista pelo seu nome e sobrenome.
 | Parâmetro       | Tipo       | Descrição                                                  |
 | :-------------- | :--------- | :--------------------------------------------------------- |
 | `id`            | `long`     | **Obrigatório**. Passar o id do usuário                    |
+
+
 | Parâmetro(JSON) | Tipo       | Descrição                                                  |
 | :---------------| :--------- | :----------------------------------------------------------|
 | `nomeDeUsuario` | `string`   | **Obrigatório**. O nome de usuário da conta               |
