@@ -102,7 +102,7 @@ DELETE /consulta/{id}
 
 #### Fazer uma busca de consulta pelo id do paciente
 
-O paciente e dentista devem existir para que se possa fazer a consulta pelo id.
+Filtrar as consultas e retornar uma lista de consultas de um paciente especifico.
 
 ```http
   GET /consulta/paciente/{id}
@@ -114,7 +114,7 @@ O paciente e dentista devem existir para que se possa fazer a consulta pelo id.
 
 #### Fazer uma busca de consulta pelo id do dentista
 
-Filtrae as consultas e retornar lista de consultas de um um dentista especifico.
+Filtrar as consultas e retornar uma lista de consultas de um dentista especifico.
 
 ```http
   GET /consulta/dentista/{id}
@@ -241,12 +241,11 @@ O id do usuário dever existir.
 
 Faltar da documentação:
 ADMIN:
+
     POST /dentista/create
     PUT /dentista/{ID}
     DELETE /dentista/{ID}
+    
     POST /paciente/create
     PUT /paciente/{ID}
     DELETE /paciente/{ID}
-    PUT /usuario/{ID}
-    DELETE /usuario/{ID}
-    GET /usuario/
