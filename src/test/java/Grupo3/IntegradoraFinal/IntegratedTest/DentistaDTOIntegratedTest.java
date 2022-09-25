@@ -22,7 +22,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.asJsonString;
 import static Grupo3.IntegradoraFinal.utils.DentistaDTOUtils.objectFromString;
@@ -34,7 +33,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @AutoConfigureMockMvc
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class DentistaDTOTest {
+public class DentistaDTOIntegratedTest {
 
     @Autowired
     private MockMvc mockMvc;
