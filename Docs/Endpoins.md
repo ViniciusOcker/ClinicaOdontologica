@@ -17,7 +17,6 @@ Ao registrar um usuário, a endpoint bloquear e registrar sempre como administra
 | `admin`         | `boolean` | **Obrigatório**. Se conta vai ter funções administrativas |
 
 
-
 ## Precisar está logado e o nível de permissão é de usuário
 
 ### Consulta
@@ -71,6 +70,7 @@ A consulta deve existir para que se possa fazer a consulta pelo id.
 | :-------- | :----- | :--------------------------------------- |
 | `id`      | `long` | **Obrigatório**. Passar o id da consulta |
 
+
 #### Alterar uma busca de consulta pelo id da consulta
 
 A consulta deve existir para que se possa alterar a busca pela consulta do id.
@@ -78,7 +78,6 @@ A consulta deve existir para que se possa alterar a busca pela consulta do id.
 ```http
 PUT /consulta/{id}
 ```
-
 | Parâmetro | Tipo   | Descrição                                |
 | :-------- | :----- | :--------------------------------------- |
 | `id`      | `long` | **Obrigatório**. Passar o id da consulta |
@@ -143,8 +142,11 @@ Os pacientes devem existir na base de dados.
 O paciente deve existir para que se possa fazer a consulta pelo seu id.
 
 ```http
-  GET /paciente/{id}
+  GET /consulta/dentista/{id}
 ```
+| Parâmetro        | Tipo   | Descrição                                |
+| :--------------- | :----- | :--------------------------------------- |
+| `id`             | `long` | **Obrigatório**. Passar o id do dentista |
 
 | Parâmetro | Tipo   | Descrição                                |
 | :-------- | :----- | :--------------------------------------- |
@@ -189,9 +191,8 @@ O dentista deve existir para que se possa fazer a consulta pelo id.
 Buscando o dentista pelo seu nome e sobrenome.
 
 ```http
-  GET /dentista/search?nome=x&&sobrenome=y
+  GET /paciente/{id}
 ```
-
 | Parâmetro           | Tipo     | Descrição                                                    |
 | :------------------ | :------- | :----------------------------------------------------------- |
 | `nome`, `sobrenome` | `String` | **Obrigatório**. Passar o nome e sobrenome como parâmetros pela URI |
@@ -222,7 +223,6 @@ Buscando o dentista pelo seu nome e sobrenome.
 | :-------- | :----- | :-------------------------------------- |
 | `id`      | `long` | **Obrigatório**. Passar o id do usuário |
 
-
 | Parâmetro(JSON) | Tipo      | Descrição                                                 |
 | :-------------- | :-------- | :-------------------------------------------------------- |
 | `nomeDeUsuario` | `string`  | **Obrigatório**. O nome de usuário da conta               |
@@ -252,7 +252,6 @@ O id do usuário dever existir.
 | Parâmetro | Tipo   | Descrição                               |
 | :-------- | :----- | :-------------------------------------- |
 | `id`      | `long` | **Obrigatório**. Passar o id do usuário |
-
 
 
 ### Dentista
@@ -378,7 +377,7 @@ O id do paciente dever existir.
   DELETE /paciente/{ID}
 ```
 
+
 | Parâmetro    | Tipo   | Descrição                                |
 | :----------- | :----- | :--------------------------------------- |
 | `idPaciente` | `long` | **Obrigatório**. Passar o id do paciente |
-

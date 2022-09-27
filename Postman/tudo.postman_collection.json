@@ -356,11 +356,26 @@
 				{
 					"name": "Criar usuario",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "batata",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "batATA2020@",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nomeDeUsuario\": \"batata\",\n    \"senha\": \"batATA2020@\",\n    \"admin\": true\n}",
+							"raw": "{\n    \"nomeDeUsuario\": \"batata2\",\n    \"senha\": \"batATA2020@\",\n    \"admin\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -377,6 +392,65 @@
 							"path": [
 								"usuario",
 								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar primeiro usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeDeUsuario\": \"batata3\",\n    \"senha\": \"batATA2020@\",\n    \"admin\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/create/first",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"create",
+								"first"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeUsuario\": \"batata3\",\n    \"senha\": \"batATA2020@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"login"
 							]
 						}
 					},
