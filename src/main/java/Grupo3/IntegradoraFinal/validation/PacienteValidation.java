@@ -24,9 +24,11 @@ public class PacienteValidation {
     }
 
     public String validationData(String data){
-        if(!data.trim().isEmpty()){
-            if(!Evalido(data, dataRegexp)){
-                return "A data está do formato incorreto![Formato correto: dd/MM/yyyy HH:mm:ss]";
+        if(data != null){
+            if(!data.trim().isEmpty()){
+                if(!Evalido(data, dataRegexp)){
+                    return "A data está do formato incorreto![Formato correto: dd/MM/yyyy HH:mm:ss]";
+                }
             }
         }
         return null;
