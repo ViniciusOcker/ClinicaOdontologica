@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -24,14 +25,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsuarioService usuarioService;
 
-//    @Autowired
-//    private JwtRequestFilter jwtRequestFilter;
+   @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/usuario/create").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuario/create/first").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuario/login").permitAll()
                 .antMatchers("/consulta", "/consulta/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/dentista/create").hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/dentista", "/dentista/**").hasAnyRole("USER","ADMIN")
@@ -45,9 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated().and()
                 //.formLogin();
-                .httpBasic();
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+               // .httpBasic();
+               .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class EnderecoValidation {
-    private static final String textRegexp = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ.- ]{1,}$";
+    private static final String textRegexp = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ.-]{1,}$";
 
     public EnderecoValidation() {
     }
@@ -35,8 +35,12 @@ public class EnderecoValidation {
         if (texto.trim().isBlank()){
             return "Este atribuito não pode ser vazio";
         }
-        else if(!Evalido(texto, textRegexp)){
-            return "Este atribuito contém caracteres invalidos!";
+
+        String list[] = texto.split(" ");
+        for (String item:list) {
+            if(!Evalido(item, textRegexp)){
+                return "Este atribuito contém caracteres invalidos!";
+            }
         }
         return null;
     }

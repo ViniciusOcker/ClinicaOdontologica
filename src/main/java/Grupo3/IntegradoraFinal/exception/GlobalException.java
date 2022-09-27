@@ -17,8 +17,14 @@ public class GlobalException {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<String> processarErrorForbidden(ForbiddenException ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
+
     @ExceptionHandler(JsonProcessingException.class)
     public ResponseEntity<String> JsonProcessingException(JsonProcessingException ex){
+        System.out.println(ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possivel processar o erro!");
     }
 }
