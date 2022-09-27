@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class PacienteValidation {
-    private static final String nomeSobrenomeRegexp = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ ]{1,}$";
+    private static final String nomeSobrenomeRegexp = "^[A-Za-z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãẽĩõũÃẼĨÕŨçÇ]{1,}$";
     private static final String croRegexp = "^[0-9]{1,}\\/[A-Z]{2}$";
     private static final String rgRegexp = "^[0-9]{1,}\\/[A-Za-z]{1,}\\/[A-Z]{2}$";
 
@@ -49,9 +49,13 @@ public class PacienteValidation {
         else if(!validationLength(nome.trim().split(" "), 2)){
             return "Este atribuito contém palavras menor do que 2 caractres";
         }
-        else if(!Evalido(nome, nomeSobrenomeRegexp)){
-            return "Este atribuito contém caracteres invalidos!";
+        String list[] = nome.split(" ");
+        for (String item:list) {
+            if(!Evalido(item, nomeSobrenomeRegexp)){
+                return "Este atribuito contém caracteres invalidos!";
+            }
         }
+
         return null;
     }
     private boolean validationLength(String[] lista, int min){
