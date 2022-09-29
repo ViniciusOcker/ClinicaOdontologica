@@ -1,5 +1,5 @@
 
-<h1 align= "center"> Integradora Final </h1>
+<h1 align= "center"> Clínica Odontológica </h1>
 
 [![skills](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot/)
 [![skills](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://docs.oracle.com/en/java/)
